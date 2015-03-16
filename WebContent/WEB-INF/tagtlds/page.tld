@@ -1,0 +1,40 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"  
+    version="2.0">  
+  
+    <description>自定义标签类</description>  
+    <tlib-version>1.0</tlib-version>  
+    <short-name>page</short-name>  
+    <uri>http://tanxiujiang.github.io/</uri>
+    
+    <tag>  
+        <description>分页标签</description>  
+        <name>Pagination</name>  
+        <tag-class>sale.xiao.tag.PaginationTag</tag-class>  
+        <body-content>empty</body-content>  
+  
+        <attribute>  
+            <description>  
+                show data by page
+            </description>  
+            <name>pagination</name>  
+            <required>true</required>  
+            <rtexprvalue>true</rtexprvalue>  
+            <type>java.lang.Object</type>  
+        </attribute>  
+          
+        <attribute>  
+            <name>queryForm</name>  
+            <required>false</required>  
+        </attribute>  
+        <attribute>  
+            <name>divId</name>  
+            <required>false</required>  
+        </attribute>  
+        <attribute>  
+            <name>divClass</name>  
+            <required>false</required>  
+        </attribute>
+    </tag>  
+</taglib>  
