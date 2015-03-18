@@ -1,7 +1,6 @@
 package sale.xiao.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,9 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloWorldController {
 
-    @RequestMapping("/helloWorld")
-    public ModelAndView helloWorld(Model model) {
-        String message = "Hello World, Spring 3.0!";
+    @RequestMapping("/hello")
+    public ModelAndView helloWorld() {
+        String message = "Spring 3 MVC Hello World";
+        System.out.println(message);
         return new ModelAndView("hello", "message", message);
     }
 }

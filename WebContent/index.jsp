@@ -8,6 +8,6 @@
 </head>
 <body>
 <%--	<jsp:forward page="SaleMainServlet"></jsp:forward> --%>
-		<a href="hello">Say Hello</a>
+		<a href="hello.html">Say Hello</a>
 </body>
 </html>
