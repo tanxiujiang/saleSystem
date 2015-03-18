@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sale.xiao.mapper.UserMapper">
+		<!--     替代，语句中的内容,简写 -->
+    <sql id="cols">
+         id,name,pwd,email,role,introduce      
+    </sql>
+	<!--     查询所有记录 -->
+    <select id="GetUserList" parameterType="string" resultType="sale.xiao.entity.UserEntity">
+        select <include refid="cols"/> from   user 
+    </select>
+    
+    
+    <!--     查询一个用户 -->                            <!--  别名替代，简写-->
+    <select id="getOne" parameterType="string" resultType="sale.xiao.entity.UserEntity">
+        select <include refid="cols"/> from   user  where id= #{id}    
+    </select>
+   
+   <!--     查询一个用户 -->                            <!--  别名替代，简写-->
+    <select id="getOneUser" parameterType="int" resultType="hashmap">
+        select <include refid="cols"/> from   user  where id= #{id}    
+    </select> 
+    
+<!--     插入一个用户 -->
+    <insert id="insertOne" parameterType="sale.xiao.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into user( <include refid="cols"/> ) values (#{id},#{name},#{age},#{address})    
+    </insert>
+<!--     更新一个用户 -->
+    <insert id="updateOne" parameterType="sale.xiao.entity.UserEntity" >
+        update user set name=#{name},age=#{age},address=#{address} where id=#{id}    
+    </insert>
+    <!--     删除一个用户 -->
+    <update id="deleteOne" parameterType="sale.xiao.entity.UserEntity" >
+        delete from user where id= #{id}   
+    </update>
+  </mapper>

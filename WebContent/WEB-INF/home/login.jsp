@@ -8,7 +8,13 @@
 </head>
 <body>
 	<div>
-		
+		<form action="" method="post">
+			<ul>
+				<li>Name:<input type="text" name="name" class=""></li>
+				<li>Password:<input type="text" name="name" class=""></li>
+				<li><input type="submit" value="提交"></li>
+			</ul>
+		</form>
 	</div>
 </body>
 </html>

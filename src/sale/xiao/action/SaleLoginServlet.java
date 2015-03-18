@@ -23,5 +23,6 @@ public class SaleLoginServlet extends HttpServlet {
             IOException {
         System.out.println("log");
         
+        
     }
 }
