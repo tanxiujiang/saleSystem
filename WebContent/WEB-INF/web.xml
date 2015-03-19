@@ -54,7 +54,7 @@
 	  </filter>
 	  <filter-mapping>
 	  		<filter-name>sitemesh</filter-name>
-	  		<url-pattern>/*</url-pattern>
+	  		<url-pattern>/WEB-INF/*</url-pattern>
 	  </filter-mapping>
 	  
 	<!--	  配置jspf-->
