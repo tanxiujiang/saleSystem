@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sale.xiao.mapper.StaffMapper">
+	<!-- 替代，语句中的内容,简写 -->
+	<sql id="cols">
+		id,name,sex,pwd,tel,introduce      
+    </sql>
+	<!-- 查询所有记录 -->
+	<select id="GetStaffList" parameterType="string"
+		resultType="sale.xiao.entity.StaffEntity">
+		select
+		<include refid="cols" />
+		from staff
+	</select>
+
+
+	<!-- 查询一个用户 -->                            <!-- 别名替代，简写 -->
+	<select id="getOne" parameterType="string" resultType="sale.xiao.entity.StaffEntity">
+		select
+		<include refid="cols" />
+		from user where id= #{id}
+	</select>
+
+	<!-- 查询一个用户 -->                            <!-- 别名替代，简写 -->
+	<select id="getOneUser" parameterType="int" resultType="hashmap">
+		select
+		<include refid="cols" />
+		from user where id= #{id}
+	</select>
+
+	<!-- 插入一个用户 -->
+	<insert id="insertOne" parameterType="sale.xiao.entity.StaffEntity"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into user(
+		<include refid="cols" />
+		) values (#{id},#{name},#{age},#{address})
+	</insert>
+	<!-- 更新一个用户 -->
+	<insert id="updateOne" parameterType="sale.xiao.entity.StaffEntity">
+		update user set name=#{name},age=#{age},address=#{address} where
+		id=#{id}    
+    </insert>
+	<!-- 删除一个用户 -->
+	<update id="deleteOne" parameterType="sale.xiao.entity.StaffEntity">
+		delete from user where id= #{id}   
+    </update>
+
+	<select id="GetPerformanceByStaffId" resultClass="java.util.Map"
+		parameterType="int" useCache="true" >
+		select
+		staff.`name`,staff.introduce,staff.sex,staff.tel,product.product_name,product.sell_price
+		from staff inner join product_staff ON staff.id =
+		product_staff.staffid INNER join product ON product_staff.productid =
+		product.id WHERE staff.id = {#id}
+    </select>
+</mapper>
