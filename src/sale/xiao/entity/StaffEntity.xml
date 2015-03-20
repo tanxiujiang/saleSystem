@@ -47,13 +47,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="deleteOne" parameterType="sale.xiao.entity.StaffEntity">
 		delete from user where id= #{id}   
     </update>
-
-	<select id="GetPerformanceByStaffId" resultClass="java.util.Map"
-		parameterType="int" useCache="true" >
+    
+	 <resultMap type="sale.xiao.entity.StaffEntity" id="staff_product">
+	    	<id property="id" column="id"/>
+	    	<id property="name" column="name"/>
+	    	<id property="sex" column="sex"/>
+	    	<id property="pwd" column="pwd"/>
+	    	<id property="tel" column="tel"/>
+	    	<id property="introduce" column="introduce"/>
+	    	<collection property="products" column="staffId" ofType="sale.xiao.entity.ProductEntity">
+	    		<id property="id" column="id" javaType="int" jdbcType="INTEGER"/>
+	    		<result property="product_name" column="product_name"/>
+		    	<result property="factory_price" column="factory_price"/>
+		    	<result property="sell_price" column="sell_price"/>
+		    	<result property="total_amount" column="total_amount"/>
+		    	<result property="introduction" column="introduction"/>
+		    	<result property="image_url" column="image_url"/>
+	    	</collection>
+	    </resultMap>
+    
+	<select id="GetPerformanceByStaffId" resultMap="staff_product"
+		parameterType="int">
 		select
-		staff.`name`,staff.introduce,staff.sex,staff.tel,product.product_name,product.sell_price
+		staff.name,staff.introduce,staff.sex,staff.tel,product.product_name,product.sell_price
 		from staff inner join product_staff ON staff.id =
 		product_staff.staffid INNER join product ON product_staff.productid =
-		product.id WHERE staff.id = {#id}
+		product.id WHERE staff.id = #{id}
     </select>
 </mapper>

@@ -34,9 +34,9 @@ public class TestDao {
 	public void GetPerformanceByStaffId()
 	{
 	    SqlSession session = sqlSessionFactory.openSession();
-        StaffMapper mapper = session.getMapper(StaffMapper.class);
-        Map<String,Object> map = mapper.GetPerformanceByStaffId(1);
-        System.out.println(map);
+        StaffMapper mapper = session.getMapper(StaffMapper.class);       
+        StaffEntity staff = mapper.GetPerformanceByStaffId(1);
+        
 	}
 	
 }

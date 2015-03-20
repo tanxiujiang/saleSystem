@@ -1,25 +1,40 @@
 package sale.xiao.entity;
 
+import java.util.List;
+
 /**
  * 
-* <class description>
-*	职工表	
-* @author: harrytan
-* @version: 1.0, Mar 20, 2015
+ * <class description> 职工表
+ * 
+ * @author: harrytan
+ * @version: 1.0, Mar 20, 2015
  */
 public class StaffEntity {
 
-    private int    id;
+    private int           id;
 
-    private String name;
+    private String        name;
 
-    private String sex;
+    private String        sex;
 
-    private String pwd;
+    private String        pwd;
 
-    private String tel;
+    private String        tel;
 
-    private String introduce;
+    private String        introduce;
+
+    private List<ProductEntity> products;
+
+
+    public List<ProductEntity> getProducts() {
+        return products;
+    }
+
+
+
+    public void setProducts(List<ProductEntity> pProducts) {
+        products = pProducts;
+    }
 
 
 
