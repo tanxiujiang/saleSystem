@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-03-19 22:03:01
+Date: 2015-03-22 23:23:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,13 +46,14 @@ CREATE TABLE `product_staff` (
   `staffid` int(11) NOT NULL DEFAULT '0',
   `productid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product_staff
 -- ----------------------------
 INSERT INTO `product_staff` VALUES ('1', '1', '1');
 INSERT INTO `product_staff` VALUES ('2', '1', '2');
+INSERT INTO `product_staff` VALUES ('3', '1', '1');
 
 -- ----------------------------
 -- Table structure for `staff`
