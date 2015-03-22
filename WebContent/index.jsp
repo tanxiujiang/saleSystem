@@ -61,8 +61,13 @@
 <body>
 <%--	<jsp:forward page="SaleMainServlet"></jsp:forward> --%>
 <a href="hello.html">Say Hello</a>
+<div>
+	<ul>
+		<li><a href="">商品</a></li>
+		<li><a href="">商店</a></li>
+		<li><a href="staff/lists">员工</a></li>
+	</ul>
+</div>
 <div id="main" style="height:400px"></div>
 </body>
-
-<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 </html>

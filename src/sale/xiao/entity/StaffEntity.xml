@@ -9,13 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		id,name,sex,pwd,tel,introduce      
     </sql>
 	<!-- 查询所有记录 -->
-	<select id="GetStaffList" parameterType="string"
+	<select id="GetStaffList" 
 		resultType="sale.xiao.entity.StaffEntity">
 		select
 		<include refid="cols" />
 		from staff
 	</select>
-
 
 	<!-- 查询一个用户 -->                            <!-- 别名替代，简写 -->
 	<select id="getOne" parameterType="string" resultType="sale.xiao.entity.StaffEntity">
@@ -61,6 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    	<result property="factory_price" column="factory_price"/>
 		    	<result property="sell_price" column="sell_price"/>
 		    	<result property="total_amount" column="total_amount"/>
+		    	<result property="group_amount" column="amount"/>
 		    	<result property="introduction" column="introduction"/>
 		    	<result property="image_url" column="image_url"/>
 	    	</collection>
@@ -69,9 +69,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="GetPerformanceByStaffId" resultMap="staff_product"
 		parameterType="int">
 		select
-		staff.name,staff.introduce,staff.sex,staff.tel,product.product_name,product.sell_price
+		staff.name,staff.introduce,staff.sex,staff.tel,product.product_name,product.sell_price,COUNT(product_staff.productid )as amount
 		from staff inner join product_staff ON staff.id =
 		product_staff.staffid INNER join product ON product_staff.productid =
-		product.id WHERE staff.id = #{id}
+		product.id WHERE staff.id = #{id} GROUP BY product_staff.productid 
     </select>
 </mapper>
