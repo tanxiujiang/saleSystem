@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/lib/require-2.1.14.js" language="javascript" charset="utf-8" data-main="js/page/home"></script>
 </head>
 <body>
 ${message}

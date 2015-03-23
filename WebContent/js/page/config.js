@@ -3,11 +3,14 @@ require.config({
 	waitSeconds: 60,
 	paths:{
 		// lib
-		jquery:'lib/jquery-2.1.3.min',
-		bootstrap:'lib/bootstrap.min',
+		jquery:'/saleSystem/js/lib/jquery-2.1.3.min',
+		bootstrap:'/saleSystem/js/lib/bootstrap.min',
+		staff:'/saleSystem/js/page/staff',
+		echarts: 'http://echarts.baidu.com/build/dist/echarts',
+		bar: 'http://echarts.baidu.com/build/dist/chart/bar',
 		npm:'npm',
 			
 		// modules
-		config:'page/config'
+		config:'/saleSystem/js/page/config'
 	}
 });

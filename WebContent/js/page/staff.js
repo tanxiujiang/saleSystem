@@ -1,26 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title></title>
-  <!-- ECharts单文件引入 -->
-    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
-    <script type="text/javascript">
-        // 路径配置
+$(function(){
+	$(".performance").click(function(){
+		// 路径配置
         require.config({
-         paths: {
-            echarts: 'http://echarts.baidu.com/build/dist/echarts',
-            bar: 'http://echarts.baidu.com/build/dist/chart/bar'
-        }
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
         });
-        
         // 使用
         require(
             [
-             'echarts',
-             'bar' // 使用柱状图就加载bar模块，按需加载
+                'echarts',
+                'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
             ],
             function (ec) {
                 // 基于准备好的dom，初始化echarts图表
@@ -52,23 +42,9 @@
                         }
                     ]
                 };
-        
                 // 为echarts对象加载数据 
                 myChart.setOption(option); 
             }
         );
-    </script>
-</head>
-<body>
-<%--	<jsp:forward page="SaleMainServlet"></jsp:forward> --%>
-<a href="hello.html">Say Hello</a>
-<div>
-	<ul>
-		<li><a href="">商品</a></li>
-		<li><a href="">商店</a></li>
-		<li><a href="staff/lists">员工</a></li>
-	</ul>
-</div>
-<div id="main" style="height:400px;width: 500px"></div>
-</body>
-</html>
+	});
+}); 

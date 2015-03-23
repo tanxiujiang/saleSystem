@@ -18,6 +18,6 @@ public class HelloWorldController {
     public ModelAndView helloWorld() {
         String message = "Spring 3 MVC Hello World";
         System.out.println(message);
-        return new ModelAndView("hello", "message", message);
+        return new ModelAndView("jsp/hello", "message", message);
     }
 }

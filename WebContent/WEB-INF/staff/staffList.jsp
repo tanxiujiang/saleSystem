@@ -5,6 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <!-- ECharts单文件引入 -->
+<script src="/saleSystem/js/lib/jquery-2.1.3.min.js"></script>
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script src="${basePath}/js/page/staff.js"></script>
 <title>职工信息列表</title>
 </head>
 <body>
@@ -22,9 +26,10 @@
 				<td>${staff.name}</td>
 				<td>${staff.sex}</td>
 				<td>${staff.tel}</td>
-				<td><a href="javascript:void(0)">销售分析</a></td>
+				<td><a href="javascript:void(0)" class="performance" v="${staff.id }">销售分析</a></td>
 			</tr>
 		</c:forEach>
 	</table>
+	<div id="main" style="height:400px"></div>
 </body>
 </html>

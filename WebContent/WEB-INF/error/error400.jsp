@@ -7,6 +7,6 @@
 <title>404</title>
 </head>
 <body>
-	抱歉，你访问的路径存在.
+	抱歉，你访问的路径不存在.
 </body>
 </html>

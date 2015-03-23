@@ -6,8 +6,8 @@
 		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Language" content="en-us" />
   		<title><decorator:title default="销售统计分析系统"/></title>
-  		<link href="css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-  		<link href="css/bootstrap/example-fluid-layout.css" type="text/css" rel="stylesheet"/>
+  		<link href="${basePath }/css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+  		<link href="${basePath }/css/bootstrap/example-fluid-layout.css" type="text/css" rel="stylesheet"/>
 		<decorator:head />
 	</head>
     <body <decorator:getProperty property="body.class" writeEntireProperty="true" />>
