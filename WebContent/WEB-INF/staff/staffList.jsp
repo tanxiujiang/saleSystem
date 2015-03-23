@@ -5,10 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <!-- ECharts单文件引入 -->
-<script src="/saleSystem/js/lib/jquery-2.1.3.min.js"></script>
-<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
-<script src="${basePath}/js/page/staff.js"></script>
+<script type="text/javascript" data-main="${basePath }/js/page/staff.js" src="${basePath }/js/lib/require-2.1.14.js"></script>
 <title>职工信息列表</title>
 </head>
 <body>

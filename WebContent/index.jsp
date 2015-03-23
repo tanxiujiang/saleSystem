@@ -11,16 +11,15 @@
         // 路径配置
         require.config({
          paths: {
-            echarts: 'http://echarts.baidu.com/build/dist/echarts',
-            bar: 'http://echarts.baidu.com/build/dist/chart/bar'
-        }
+            echarts: 'http://echarts.baidu.com/build/dist',
+       	 }
         });
         
         // 使用
         require(
             [
              'echarts',
-             'bar' // 使用柱状图就加载bar模块，按需加载
+             'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
             ],
             function (ec) {
                 // 基于准备好的dom，初始化echarts图表
