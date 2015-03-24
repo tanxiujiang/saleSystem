@@ -2,15 +2,15 @@ package sale.xiao.entity;
 
 /**
  * 
-* <class description>
-*		商店
-* @author: harrytan
-* @version: 1.0, Mar 20, 2015
+ * <class description> 商店
+ * 
+ * @author: harrytan
+ * @version: 1.0, Mar 20, 2015
  */
 public class StoreEntity {
     private String id;
     private String store_name;
-    private String adress;
+    private String address;
     private String introduce;
 
 
@@ -39,14 +39,14 @@ public class StoreEntity {
 
 
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
 
 
-    public void setAdress(String pAdress) {
-        adress = pAdress;
+    public void setAddress(String pAddress) {
+        address = pAddress;
     }
 
 

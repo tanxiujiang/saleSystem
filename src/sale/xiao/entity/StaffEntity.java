@@ -22,6 +22,20 @@ public class StaffEntity {
     private String        tel;
 
     private String        introduce;
+    
+    private int           store_id;
+
+    public int getStore_id() {
+        return store_id;
+    }
+
+
+
+    public void setStore_id(int pStore_id) {
+        store_id = pStore_id;
+    }
+
+
 
     private List<ProductEntity> products;
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sale.xiao.mapper.AdminMapper">
+	<!-- 替代，语句中的内容,简写 -->
+	<sql id="cols_admin">
+		id,name,pwd,email   
+    </sql>
+    
+    <sql id="cols_store">
+		store_name,adress,introduce      
+    </sql>
+    
+<!--    <select id="GetAdmin" resultType="sale.xiao.entity.AdminEntity" useCache="true">-->
+<!--    	select <include refid="cols_admin"></include> from  admin where email = #{email}-->
+<!--    </select>-->
+    
+    <!-- 插入一个商店 -->
+	<insert id="AddStore" parameterType="sale.xiao.entity.StoreEntity">
+		insert into store(
+		<include refid="cols_store" />
+		) values (#{store.store_name},#{store.address},#{store.introduce})
+	</insert>
+	
+	<insert id="AddProducts" parameterType="sale.xiao.entity.ProductEntity">
+		insert into product(product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url)
+		values(#{product.product_name},#{product.factory_price},#{product.sell_price},#{product.total_amount},#{product.remain_amount},#{product.introduction},#{product.image_url})
+	</insert>
+	
+</mapper>

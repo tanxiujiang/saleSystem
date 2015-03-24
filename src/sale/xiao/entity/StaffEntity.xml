@@ -8,6 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<sql id="cols">
 		id,name,sex,pwd,tel,introduce      
     </sql>
+    
+    <sql id="col">
+  	  name,sex,tel,introduce
+    </sql>
 	<!-- 查询所有记录 -->
 	<select id="GetStaffList" 
 		resultType="sale.xiao.entity.StaffEntity">
@@ -31,12 +35,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 插入一个用户 -->
-	<insert id="insertOne" parameterType="sale.xiao.entity.StaffEntity"
-		useGeneratedKeys="true" keyProperty="id">
-		insert into user(
-		<include refid="cols" />
-		) values (#{id},#{name},#{age},#{address})
+	<insert id="AddStaff" parameterType="sale.xiao.entity.StaffEntity" keyProperty="id">
+		insert into staff(
+		<include refid="col" />
+		) values (#{staff.name},#{staff.sex},#{staff.tel},#{staff.introduce})
 	</insert>
+	
+	
+	
 	<!-- 更新一个用户 -->
 	<insert id="updateOne" parameterType="sale.xiao.entity.StaffEntity">
 		update user set name=#{name},age=#{age},address=#{address} where

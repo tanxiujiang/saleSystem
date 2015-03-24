@@ -15,6 +15,9 @@ public class ProductEntity {
     private int    total_amount;
     private int    remain_amount;
     private int    group_amount;
+    private String introduction;
+    private String image_url;
+    
     public int getGroup_amount() {
 		return group_amount;
 	}
@@ -24,12 +27,6 @@ public class ProductEntity {
 	public void setGroup_amount(int group_amount) {
 		this.group_amount = group_amount;
 	}
-
-
-
-	private String introduction;
-    private String image_url;
-
 
 
     public int getId() {

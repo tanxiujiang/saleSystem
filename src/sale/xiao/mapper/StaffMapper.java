@@ -26,4 +26,7 @@ public interface StaffMapper {
 	* @return
 	 */
 	public StaffEntity GetPerformanceByStaffId(@Param("id")Integer id);
+	
+	
+	
 }
