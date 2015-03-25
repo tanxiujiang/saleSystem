@@ -1,10 +1,10 @@
 package sale.xiao.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import sale.xiao.entity.StaffEntity;
+import sale.xiao.entity.StoreEntity;
 
 /**
  * 
@@ -26,7 +26,5 @@ public interface StaffMapper {
 	* @return
 	 */
 	public StaffEntity GetPerformanceByStaffId(@Param("id")Integer id);
-	
-	
 	
 }

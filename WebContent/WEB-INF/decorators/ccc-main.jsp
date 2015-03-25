@@ -5,9 +5,17 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="Content-Language" content="en-us" />
+		<meta http-equiv="Pragma" content="no-cache"/>    
+  		<meta http-equiv="Cache-Control" content="no-cache" />
+  		<meta http-equiv="Expires" content="0"/>
   		<title><decorator:title default="销售统计分析系统"/></title>
+  	    <link href="${basePath }/img/girl.ico" rel="shortcut icon"/>
   		<link href="${basePath }/css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet"/>
   		<link href="${basePath }/css/bootstrap/example-fluid-layout.css" type="text/css" rel="stylesheet"/>
+  		<link href="${basePath }/css/bootstrap/bootstrap-theme.css" type="text/css" rel="stylesheet"/>
+  		<link href="${basePath }/css/bootstrap/bootstrap-theme.css.map" type="text/css" rel="stylesheet"/>
+  		<link href="${basePath }/css/all.css" type="text/css" rel="stylesheet"/>
+  		<link />
 		<decorator:head />
 	</head>
     <body <decorator:getProperty property="body.class" writeEntireProperty="true" />>

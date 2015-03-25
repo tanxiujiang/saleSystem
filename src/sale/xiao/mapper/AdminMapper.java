@@ -1,5 +1,8 @@
 package sale.xiao.mapper;
 
+import java.awt.Stroke;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import sale.xiao.entity.AdminEntity;
@@ -52,4 +55,15 @@ public interface AdminMapper {
     * @return
      */
     public boolean AddProducts(@Param("product")ProductEntity product);
+    
+    
+    /**
+     * 
+    * <method description>
+    *  加载商店列表信息
+    * @return
+     */
+    public List<StoreEntity> GetStores();
+    
+    
 }

@@ -17,9 +17,9 @@
 		</environment>
 	</environments>
 	<mappers>
-<!--		<mapper resource="sale/xiao/entity/StaffEntity.xml" />-->
+		<mapper resource="sale/xiao/entity/StaffEntity.xml" />
 		<mapper resource="sale/xiao/entity/AdminEntity.xml" />
-<!--		<mapper resource="sale/xiao/entity/StoreEntity.xml" />-->
+		<mapper resource="sale/xiao/entity/StoreEntity.xml" />
 <!-- 		<mapper class="txj.inter.UserMapper"/> -->
 	</mappers>
 </configuration>

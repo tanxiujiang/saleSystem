@@ -1,5 +1,7 @@
 package sale.xiao.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -9,6 +11,7 @@ import sale.xiao.entity.StaffEntity;
 import sale.xiao.entity.StoreEntity;
 import sale.xiao.factory.SessionFactory;
 import sale.xiao.mapper.AdminMapper;
+import sale.xiao.util.SaleUtil;
 
 /**
  * 
@@ -41,13 +44,13 @@ public class AdminService {
      * @param pwd
      * @return
      */
-    public boolean login(String email, String pwd) {
-        AdminEntity admin = adminMapper.GetAdmin(email);
-        if (null != admin && admin.getPwd().equals(pwd)) {
-            return true;
+    public AdminEntity login(final AdminEntity admin) {
+        AdminEntity o = adminMapper.GetAdmin(admin.getEmail());
+        if (null != o && o.getPwd().equals(admin.getPwd())) {
+            return o;
         }
 
-        return false;
+        return null;
     }
 
 
@@ -87,7 +90,7 @@ public class AdminService {
             b = adminMapper.AddStore(store);
         } catch (Exception e) {
             session.rollback();
-            System.err.println("添加分店失败，执行回滚操作：" );
+            System.err.println("添加分店失败，执行回滚操作：");
             e.printStackTrace();
         } finally {
             session.commit();
@@ -96,14 +99,16 @@ public class AdminService {
         return b;
     }
 
+
+
     /**
      * 
-    * <method description>
-    * 管理员添加产品入库
-    * @param product
-    * @return
+     * <method description> 管理员添加产品入库
+     * 
+     * @param product
+     * @return
      */
-    public boolean AddProducts(ProductEntity product){
+    public boolean AddProducts(ProductEntity product) {
         boolean b = false;
         try {
             b = adminMapper.AddProducts(product);
@@ -111,11 +116,27 @@ public class AdminService {
             session.rollback();
             System.err.print("添加商品入库失败,执行回滚操作");
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             session.commit();
         }
-        
+
         return b;
+    }
+
+
+
+    /**
+     * 
+     * <method description> 加载商店全部信息
+     * 
+     * @return
+     */
+    public String GetStores() {
+        List<StoreEntity> stores = adminMapper.GetStores();
+        if (null != stores) {
+            return SaleUtil.GetGsonStr(stores);
+        }
+        
+        return SaleUtil.GetGsonStr("error");
     }
 }

@@ -27,9 +27,8 @@ import sale.xiao.util.SaleUtil;
 @RequestMapping("/staff")
 public class StaffController {
 	
-	StaffService staffService = null;
+	StaffService staffService = new StaffService();
 	public StaffController(){
-		staffService = new StaffService();
 	}
 	
 	/**

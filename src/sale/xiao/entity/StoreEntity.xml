@@ -8,12 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<sql id="cols">
 		id,store_name,adress,introduce      
     </sql>
-    
-    <!-- 插入一个用户 -->
-	<insert id="AddStore" parameterType="sale.xiao.entity.StoreEntity" keyProperty="id" useGeneratedKeys="true">
-		insert into staff(
-		<include refid="col" />
-		) values (#{store.store_name},#{store.address},#{store.introduce})
-	</insert>
-    
+    <select id="GetStores" resultType="sale.xiao.entity.StoreEntity">
+		select <include refid="cols" /> from store
+    </select>
 </mapper>

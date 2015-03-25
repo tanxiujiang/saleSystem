@@ -13,9 +13,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		store_name,adress,introduce      
     </sql>
     
-<!--    <select id="GetAdmin" resultType="sale.xiao.entity.AdminEntity" useCache="true">-->
-<!--    	select <include refid="cols_admin"></include> from  admin where email = #{email}-->
-<!--    </select>-->
+    <select id="GetAdmin" resultType="sale.xiao.entity.AdminEntity" useCache="true">
+    	select <include refid="cols_admin"></include> from  admin where email = #{email}
+    </select>
     
     <!-- 插入一个商店 -->
 	<insert id="AddStore" parameterType="sale.xiao.entity.StoreEntity">
@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		) values (#{store.store_name},#{store.address},#{store.introduce})
 	</insert>
 	
+	<!--	添加产品信息-->
 	<insert id="AddProducts" parameterType="sale.xiao.entity.ProductEntity">
 		insert into product(product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url)
 		values(#{product.product_name},#{product.factory_price},#{product.sell_price},#{product.total_amount},#{product.remain_amount},#{product.introduction},#{product.image_url})
