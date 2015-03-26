@@ -65,7 +65,12 @@ require(['config'],function() {
 								
 								var title = new Array();
 								title.push('销售业绩');
-								var containerElement = document.getElementById('main'); 
+								var containerElement = document.getElementById('main');
+								
+								// 判断是否隐藏
+								if(!$(containerElement).is(":visible")){
+									$(containerElement).show();
+								}
 								
 								var position = currentElement.position();
 								$(containerElement).css("position","absolute");
@@ -110,6 +115,11 @@ require(['config'],function() {
 								  myChart.setOption(option); 
 							};
 							
+							
+							//双击隐藏弹出层div
+							$("#main").dblclick(function(){
+								$(this).hide();
+							});
 			               
 					// ////////////////////////////////////////////////////////////////////////////////	
 						});

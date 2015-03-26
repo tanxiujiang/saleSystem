@@ -1,19 +1,20 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50622
+Source Server         : local
+Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : salesystem
 
 Target Server Type    : MYSQL
-Target Server Version : 50622
+Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-03-26 18:07:36
+Date: 2015-03-27 00:32:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
 -- ----------------------------
 -- Table structure for `admin`
 -- ----------------------------
@@ -32,30 +33,49 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` VALUES ('1', '1026741594@qq.com', '123', '肖苗');
 
 -- ----------------------------
+-- Table structure for `order`
+-- ----------------------------
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `staff_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL COMMENT '卖出数量',
+  `sell_price` float NOT NULL COMMENT '售价',
+  `sell_date` varchar(255) NOT NULL COMMENT '卖出时间，字符串存储',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of order
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `product`
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_name` varchar(30) DEFAULT NULL,
-  `factory_price` float DEFAULT NULL,
-  `sell_price` float DEFAULT NULL,
-  `total_amount` int(11) DEFAULT NULL,
-  `remain_amount` int(11) DEFAULT NULL,
+  `product_name` varchar(30) NOT NULL,
+  `factory_price` float NOT NULL,
+  `sell_price` float NOT NULL,
+  `total_amount` int(11) NOT NULL,
+  `remain_amount` int(11) NOT NULL,
   `introduction` varchar(500) DEFAULT NULL,
   `image_url` varchar(100) DEFAULT NULL,
+  `is_delete` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0表示逻辑删除，1表示存在',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', 'U盘', '120', '150', '100', '80', '红色8G', null);
-INSERT INTO `product` VALUES ('2', 'Iphone', '4800', '5500', '1200', '100', '金色', null);
-INSERT INTO `product` VALUES ('3', '纯棉超薄羽绒服', '120', '150', '100', '100', '跳楼价，赶紧抢购吧。', '');
-INSERT INTO `product` VALUES ('4', '纯棉超薄羽绒服', '120', '150', '100', '100', '跳楼价，赶紧抢购吧。', '');
-INSERT INTO `product` VALUES ('5', '小米(Note)', '1200', '1500', '100', '100', '价格实惠，便宜好用.			         ', null);
-INSERT INTO `product` VALUES ('6', '华为', '850', '100', '1000', '1000', '					         	\r\n		大大大达大厦			         ', null);
+INSERT INTO `product` VALUES ('1', 'U盘', '120', '150', '100', '80', '红色8G', null, '0');
+INSERT INTO `product` VALUES ('2', 'Iphone', '4800', '5500', '1200', '100', '金色', null, '0');
+INSERT INTO `product` VALUES ('3', '纯棉超薄羽绒服', '120', '150', '100', '100', '跳楼价，赶紧抢购吧。', '', '0');
+INSERT INTO `product` VALUES ('4', '纯棉超薄羽绒服', '120', '150', '100', '100', '跳楼价，赶紧抢购吧。', '', '0');
+INSERT INTO `product` VALUES ('5', '小米(Note)', '1200', '1500', '100', '100', '价格实惠，便宜好用.			         ', null, '0');
+INSERT INTO `product` VALUES ('6', '华为', '850', '100', '1000', '1000', '					         	\r\n		大大大达大厦			         ', null, '0');
 
 -- ----------------------------
 -- Table structure for `product_staff`
@@ -97,17 +117,18 @@ CREATE TABLE `staff` (
   `tel` varchar(30) NOT NULL,
   `introduction` varchar(1000) DEFAULT NULL,
   `store_id` int(11) NOT NULL,
+  `is_delete` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0表示逻辑未删除，1表示逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of staff
 -- ----------------------------
-INSERT INTO `staff` VALUES ('1', 'harry', '男', '111111', '18202888720', '阳光帅气', '0');
-INSERT INTO `staff` VALUES ('2', 'leina', '女', '222222', '18289888280', '国宝', '0');
-INSERT INTO `staff` VALUES ('8', 'lisary', '男', '111111', '18202888720', '好样儿的', '0');
-INSERT INTO `staff` VALUES ('9', 'leina', 'on', '111111', '18202888720', '大家好才是真的好，广州好滴.', '5');
-INSERT INTO `staff` VALUES ('10', 'lisary', 'on', '111111', '13540660605', '大学本科，现在在成都安科思有限公司上班.		         ', '5');
+INSERT INTO `staff` VALUES ('1', 'harry', '男', '111111', '18202888720', '阳光帅气', '0', '0');
+INSERT INTO `staff` VALUES ('2', 'leina', '女', '222222', '18289888280', '国宝', '0', '0');
+INSERT INTO `staff` VALUES ('8', 'lisary', '男', '111111', '18202888720', '好样儿的', '0', '0');
+INSERT INTO `staff` VALUES ('9', 'leina', 'on', '111111', '18202888720', '大家好才是真的好，广州好滴.', '5', '0');
+INSERT INTO `staff` VALUES ('10', 'lisary', 'on', '111111', '13540660605', '大学本科，现在在成都安科思有限公司上班.		         ', '5', '0');
 
 -- ----------------------------
 -- Table structure for `store`
@@ -146,3 +167,19 @@ CREATE TABLE `store_product` (
 INSERT INTO `store_product` VALUES ('1', '1', '1');
 INSERT INTO `store_product` VALUES ('2', '1', '1');
 INSERT INTO `store_product` VALUES ('3', '1', '2');
+
+-- ----------------------------
+-- Table structure for `store_staff`
+-- ----------------------------
+DROP TABLE IF EXISTS `store_staff`;
+CREATE TABLE `store_staff` (
+  `store_id` int(11) NOT NULL,
+  `staff_id` int(11) NOT NULL,
+  PRIMARY KEY (`store_id`,`staff_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of store_staff
+-- ----------------------------
+INSERT INTO `store_staff` VALUES ('1', '1');
+INSERT INTO `store_staff` VALUES ('2', '2');
