@@ -65,5 +65,28 @@ public interface AdminMapper {
      */
     public List<StoreEntity> GetStores();
     
+    /**
+     * 
+    * <method description>
+    *   加载职工列表信息
+    * @return
+     */
+    public List<StaffEntity> GetStaffs();
+    
+    /**
+     * 
+    * <method description>
+    * 加载产品列表信息
+    * @return
+     */
+    public List<ProductEntity> GetProducts();
+    
+    /**
+     * 
+    * <method description>
+    * 查询每个员工的销售报表图
+    * @return
+     */
+    public List<StaffEntity> GetPerformanceByStaffId(@Param("staffId")int staffId);
     
 }

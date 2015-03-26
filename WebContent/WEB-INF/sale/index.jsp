@@ -39,7 +39,7 @@
     <div class="jumbotron">
       <div class="container">
         <h3><strong>销售统计分析系统</strong></h3>
-        <p>
+        <p class="text-indent: 5em;">
         	随着世界经济与商务模式的发展与变革，销售统计分析概念被应用到现实的企业交易中，通过网络通信技术，实现企业的电子商务模式，对企业的经济业务具有着重要的价值，
         	能够有效地提高企业交易的效率，增强企业的竞争力，并降低企业的运营成本。同时，销售数据分析成了一个值得高度重视的话题。销售统计分析系统就是将销售的数据进行挖掘,
         	将其有用的信息展示出来给销售的主管做参考，以此为依据对销售的进货，以及是否盈利进行评估。用更直观的图形展示代替冗余大数量的数据。既节省了时间，又更清晰准确。
@@ -53,32 +53,36 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
           <h2>添加商品</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
           <p><a class="btn btn-default" href="${basePath}/admin/goproduct" role="button">Go to page »</a></p>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
           <h2>添加职工</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
           <p><a class="btn btn-default" href="${basePath}/admin/gostaff" role="button">Go to page »</a></p>
        </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
           <h2>商品查询</h2>
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">Go to page »</a></p>
+          <p><a class="btn btn-default" href="${basePath}/admin/productlist" role="button">Go to page »</a></p>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
           <h2>职工查询</h2>
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">Go to page »</a></p>
+          <p><a class="btn btn-default" href="${basePath}/admin/stafflist" role="button">Go to page »</a></p>
+        </div>
+        
+        <div class="col-md-6">
+          <h2>出售</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="${basePath}/admin/stafflist" role="button">Go to page »</a></p>
         </div>
       </div>
-
       <hr>
-
       <footer>
-        <p>© 四川成都信息工程大学(成都双流)</p>
+        <p>© 四川成都信息工程大学(航空港校区)</p>
       </footer>
     </div>
 </html>

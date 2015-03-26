@@ -13,7 +13,6 @@
   		<link href="${basePath }/css/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet"/>
   		<link href="${basePath }/css/bootstrap/example-fluid-layout.css" type="text/css" rel="stylesheet"/>
   		<link href="${basePath }/css/bootstrap/bootstrap-theme.css" type="text/css" rel="stylesheet"/>
-  		<link href="${basePath }/css/bootstrap/bootstrap-theme.css.map" type="text/css" rel="stylesheet"/>
   		<link href="${basePath }/css/all.css" type="text/css" rel="stylesheet"/>
   		<link />
 		<decorator:head />

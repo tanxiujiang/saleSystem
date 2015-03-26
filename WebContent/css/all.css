@@ -1,5 +1,21 @@
-.textarea{
+.textarea {
 	margin: 0px;
-	width: 736px; 
+	width: 736px;
 	height: 199px;
+}
+
+.pagination {
+	float: right;
+	margin-right: 80px;
+}
+
+input.search-query {
+	padding-right: 14px;
+	padding-right: 4px \9;
+	padding-left: 14px;
+	padding-left: 4px \9;
+	margin-bottom: 0;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 }

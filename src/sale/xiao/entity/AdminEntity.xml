@@ -30,4 +30,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{product.product_name},#{product.factory_price},#{product.sell_price},#{product.total_amount},#{product.remain_amount},#{product.introduction},#{product.image_url})
 	</insert>
 	
+	
+	<!-- 添加职工 -->
+	<insert id="AddStaff" parameterType="sale.xiao.entity.StaffEntity" keyProperty="id">
+		insert into staff(name,sex,tel,introduction,store_id) values (#{staff.name},#{staff.sex},#{staff.tel},#{staff.introduction},#{staff.store_id})
+	</insert>
+	
+	<!--	加载职工列表消息-->
+	<select id="GetStaffs" resultType="sale.xiao.entity.StaffEntity">
+		select id,name,sex,pwd,tel,introduction,store_id from staff
+	</select>
+	
+	<!--	加载产品列表-->
+	<select id="GetProducts" resultType="sale.xiao.entity.ProductEntity">
+		select id,product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url from product
+	</select>
+	
+	 <resultMap type="sale.xiao.entity.StaffEntity" id="staff_product">
+	    	<id property="id" column="id"/>
+	    	<id property="name" column="name"/>
+	    	<id property="sex" column="sex"/>
+	    	<id property="pwd" column="pwd"/>
+	    	<id property="tel" column="tel"/>
+	    	<id property="introduction" column="introduction"/>
+	    	<collection property="products" column="staffId" ofType="sale.xiao.entity.ProductEntity">
+	    		<id property="id" column="id" javaType="int" jdbcType="INTEGER"/>
+	    		<result property="product_name" column="product_name"/>
+		    	<result property="factory_price" column="factory_price"/>
+		    	<result property="sell_price" column="sell_price"/>
+		    	<result property="total_amount" column="total_amount"/>
+		    	<result property="group_amount" column="amount"/>
+		    	<result property="introduction" column="introduction"/>
+		    	<result property="image_url" column="image_url"/>
+	    	</collection>
+	    </resultMap>
+    
+	<select id="GetPerformanceByStaffId" resultMap="staff_product"
+		parameterType="int">
+		select
+		staff.name,staff.introduction,staff.sex,staff.tel,product.product_name,product.sell_price,COUNT(product_staff.productid )as amount
+		from staff inner join product_staff ON staff.id =
+		product_staff.staffid INNER join product ON product_staff.productid =
+		product.id WHERE staff.id = #{staffId} GROUP BY product_staff.productid
+    </select>
 </mapper>

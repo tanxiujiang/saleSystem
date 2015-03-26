@@ -21,7 +21,7 @@ public class StaffEntity {
 
     private String        tel;
 
-    private String        introduce;
+    private String        introduction;
     
     private int           store_id;
 
@@ -112,14 +112,14 @@ public class StaffEntity {
 
 
 
-    public String getIntroduce() {
-        return introduce;
+    public String getIntroduction() {
+        return introduction;
     }
 
 
 
-    public void setIntroduce(String pIntroduce) {
-        introduce = pIntroduce;
+    public void setIntroduction(String pIntroduction) {
+        introduction = pIntroduction;
     }
 
 }

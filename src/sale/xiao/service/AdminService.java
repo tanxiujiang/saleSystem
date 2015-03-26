@@ -34,8 +34,6 @@ public class AdminService {
         adminMapper = session.getMapper(AdminMapper.class);
     }
 
-
-
     /**
      * 
      * <method description> 管理员信息登录
@@ -52,7 +50,6 @@ public class AdminService {
 
         return null;
     }
-
 
 
     /**
@@ -139,4 +136,39 @@ public class AdminService {
         
         return SaleUtil.GetGsonStr("error");
     }
-}
+    
+    /**
+     * 
+    * <method description>
+    * 加载职工列表
+    * @return
+     */
+    public List<StaffEntity> GetStaffs(){
+        List<StaffEntity> stores = adminMapper.GetStaffs();
+        return stores;
+    }
+    
+    /**
+     * 
+    * <method description>
+    * 加载产品列表
+    * @return
+     */
+    public List<ProductEntity> GetProducts(){
+        List<ProductEntity> products = adminMapper.GetProducts();
+        return products;
+    }
+    
+    /**
+     * 
+    * <method description>
+    * 加载员工产品销售量
+    * @param staffId
+    * @return
+     */
+    public String LoadPerformanceByStaffId(String staffId){
+        int id = Integer.valueOf(staffId);
+        List<StaffEntity> staffs = adminMapper.GetPerformanceByStaffId(id);
+        return SaleUtil.GetGsonStr(staffs);
+    }
+ }

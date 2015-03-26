@@ -10,7 +10,7 @@
 	<div class="panel panel-default">
    		<div class="panel-body">
    			<strong>Add product</strong>
-   			<h4 style="float: right;">${msg}</h4>
+   			<h4 style="float: right;color: red;">${msg}</h4>
    		</div>
 		   <div class="panel-footer">
 		   		<form class="form-horizontal" role="form" action="${basePath}/admin/addproduct" method="post">
