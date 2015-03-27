@@ -74,4 +74,39 @@ public class StaffController {
 		}
 	}
 	
+	/**
+	 * 
+	* <method description>
+	* 执行跳转到职工销售的页面
+	* @return
+	 */
+	@RequestMapping(value="/salepage",method=RequestMethod.GET)
+	public String GoSalePage(){
+	    return "staff/saleProduct";
+	}
+	
+	@RequestMapping(value="/queryproduct",method=RequestMethod.POST)
+	public String QueryProductById(HttpServletRequest request,String id){
+	    ProductEntity product = staffService.QueryProductById(id);
+	    if(null != product){
+	        request.setAttribute("product", product);
+	    }
+	    
+	    return "staff/saleProduct";
+	}
+	
+	/**
+	 * 
+	* <method description>
+	*  主要功能实现职工在卖场卖出产品给顾客，职工输入id（模拟条形码）查询商品，输入购买数量生成订单，完成下单的过程
+	*  1. product表对应的产品数量 - 购买数量
+	*  2. 生成对应的订单
+	* @return
+	 */
+	@RequestMapping(value="/buyproduct",method=RequestMethod.POST)
+	public String BuyProductByStaff(HttpServletRequest request,ProductEntity product){
+	    int productId = product.getId();
+	    System.out.println(productId);
+	    return "";
+	}
 }	
