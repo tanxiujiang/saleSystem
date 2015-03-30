@@ -52,7 +52,7 @@
 					   
 					   <div class="form-group">
 					      <div class="col-sm-offset-2 col-sm-10">
-					         <button type="submit" class="btn btn-default">登录</button>
+					         <button type="submit" class="btn btn-default">添加</button>
 					         <a class="btn btn-default" href="${basePath}/sale/index" role="button">返回  »</a>
 					      </div>
 					   </div>

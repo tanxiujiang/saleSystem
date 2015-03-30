@@ -19,10 +19,16 @@ require(['config'],function() {
 			$(".buyProduct").click(function(){
 				var data = $("form.hiden").serialize();
 				$.post("buyproduct",data).done(function(){
-					alert(data);
+					if(data == "login"){
+						window.location.href="/saleSystem/sale/index";
+					}
+					else
+					{
+						alert(data);
+					}
 				}).fail(function(data){
 					alert(data);
-				});
+				},"text");
 			});
 		});
 		

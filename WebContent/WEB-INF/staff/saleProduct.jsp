@@ -20,6 +20,7 @@
 					    </div>
 					  </div>
 				  </form>
+				  <a class="btn btn-default" href="${basePath}/sale/index" role="button" style="float: right;">返回  »</a>
 			</div>
 			<c:if test="${not empty product}">
 				<table class="table" style="width: 60%">
