@@ -11,19 +11,62 @@ import java.util.List;
  */
 public class StaffEntity {
 
-    private int           id;
+    private int    id;
 
-    private String        name;
+    private String email;
 
-    private String        sex;
+    private String name;
 
-    private String        pwd;
+    private String sex;
 
-    private String        tel;
+    private String pwd;
 
-    private String        introduction;
-    
-    private int           store_id;
+    private String tel;
+
+    private String introduction;
+
+
+
+    public String getEmail() {
+        return email;
+    }
+
+
+
+    public void setEmail(String pEmail) {
+        email = pEmail;
+    }
+
+
+
+    public int getIs_delete() {
+        return is_delete;
+    }
+
+
+
+    public void setIs_delete(int pIs_delete) {
+        is_delete = pIs_delete;
+    }
+
+
+
+    public int getRole() {
+        return role;
+    }
+
+
+
+    public void setRole(int pRole) {
+        role = pRole;
+    }
+
+    private int store_id;
+
+    private int is_delete;
+    private int role;
+
+
 
     public int getStore_id() {
         return store_id;
@@ -35,9 +78,8 @@ public class StaffEntity {
         store_id = pStore_id;
     }
 
-
-
     private List<ProductEntity> products;
+
 
 
     public List<ProductEntity> getProducts() {

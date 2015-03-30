@@ -8,7 +8,7 @@ package sale.xiao.entity;
 * @version: 1.0, Mar 20, 2015
  */
 public class ProductEntity {
-    private int    id;
+    private String    id;
     private String product_name;
     private double factory_price;
     private double sell_price;
@@ -29,13 +29,13 @@ public class ProductEntity {
 	}
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
 
 
-    public void setId(int pId) {
+    public void setId(String pId) {
         id = pId;
     }
 

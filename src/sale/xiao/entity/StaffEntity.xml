@@ -26,12 +26,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select id,product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url from product where id = ${id} 
 	</select>
 	
-	<update id="UpdateProductAmount" parameterType="java.lang.Integer">
+	<update id="UpdateProductAmount">
 		update product set remain_amount = remain_amount - #{qty} where id = #{id}
 	</update>
 	
 	<insert id="AddOrder" parameterType="sale.xiao.entity.OrderEntity">
-		insert into order(product_id,staff_id,amount,sell_price,sell_date) values(#{product_id},#{staff_id},#{amount},#{sell_price},#{sell_date})
+		insert into sale_order(product_id,staff_id,amount,sell_price,sell_date) values(#{order.product_id},#{order.staff_id},#{order.amount},#{order.sell_price},#{order.sell_date})
 	</insert>
 	
 	<!--	自定义一个resultMap查询一个员工的销售情况统计-->

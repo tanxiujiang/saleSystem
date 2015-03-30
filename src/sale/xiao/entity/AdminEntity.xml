@@ -6,15 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="sale.xiao.mapper.AdminMapper">
 	<!-- 替代，语句中的内容,简写 -->
 	<sql id="cols_admin">
-		id,name,pwd,email   
+		id,name,pwd,email,role  
     </sql>
     
     <sql id="cols_store">
 		store_name,adress,introduce      
     </sql>
     
-    <select id="GetAdmin" resultType="sale.xiao.entity.AdminEntity" useCache="true">
-    	select <include refid="cols_admin"></include> from  admin where email = #{email}
+    <select id="GetAdmin" resultType="sale.xiao.entity.StaffEntity" useCache="true">
+    	select <include refid="cols_admin"></include> from  staff where email = #{email} and is_delete = 0
     </select>
     
     <!-- 插入一个商店 -->
@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--	添加产品信息-->
 	<insert id="AddProducts" parameterType="sale.xiao.entity.ProductEntity">
-		insert into product(product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url)
-		values(#{product.product_name},#{product.factory_price},#{product.sell_price},#{product.total_amount},#{product.remain_amount},#{product.introduction},#{product.image_url})
+		insert into product(id,product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url)
+		values(#{product.id},#{product.product_name},#{product.factory_price},#{product.sell_price},#{product.total_amount},#{product.remain_amount},#{product.introduction},#{product.image_url})
 	</insert>
 	
 	
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    	<id property="tel" column="tel"/>
 	    	<id property="introduction" column="introduction"/>
 	    	<collection property="products" column="staffId" ofType="sale.xiao.entity.ProductEntity">
-	    		<id property="id" column="id" javaType="int" jdbcType="INTEGER"/>
+	    		<id property="id" column="id" javaType="string" jdbcType="VARCHAR"/>
 	    		<result property="product_name" column="product_name"/>
 		    	<result property="factory_price" column="factory_price"/>
 		    	<result property="sell_price" column="sell_price"/>

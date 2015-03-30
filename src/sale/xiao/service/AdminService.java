@@ -42,8 +42,8 @@ public class AdminService {
      * @param pwd
      * @return
      */
-    public AdminEntity login(final AdminEntity admin) {
-        AdminEntity o = adminMapper.GetAdmin(admin.getEmail());
+    public StaffEntity login(final AdminEntity admin) {
+        StaffEntity o = adminMapper.GetAdmin(admin.getEmail());
         if (null != o && o.getPwd().equals(admin.getPwd())) {
             return o;
         }

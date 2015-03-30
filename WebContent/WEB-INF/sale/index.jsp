@@ -28,8 +28,8 @@
               <input type="password" placeholder="Password" class="form-control" name="pwd">
             </div>
             <button type="submit" class="btn btn-success">登陆</button>
-            <c:if test="${not empty admin}">
-            	<span style="color: red;">欢迎你：${admin.name}</span>
+            <c:if test="${not empty staff}">
+            	<span style="color: red;">欢迎你：${staff.name}</span>
             </c:if>
           </form>
         </div>

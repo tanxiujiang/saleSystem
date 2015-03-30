@@ -46,12 +46,20 @@ public class AdminController {
         adminService = new AdminService();
     }
     
+    /**
+     * 
+    * <method description>
+    * 做管理员登陆和职工登录入口
+    * @param request
+    * @param admin
+    * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request, @ModelAttribute("admin") AdminEntity admin) {
-        AdminEntity o = adminService.login(admin);
+        StaffEntity o = adminService.login(admin);
         if (null != o) {
             HttpSession session = SaleUtil.getSession(request);
-            session.setAttribute("admin", o);
+            session.setAttribute("staff", o);
         }
         return "redirect:../sale/index";
     }
@@ -77,6 +85,7 @@ public class AdminController {
     @RequestMapping(value = "/addproduct", method = RequestMethod.POST)
     public String AddProduct(@ModelAttribute("product") ProductEntity product, HttpServletRequest request) {
         ProductEntity p = product;
+        p.setId(SaleUtil.GetProductId());
         p.setRemain_amount(product.getTotal_amount());
         boolean b = adminService.AddProducts(p);
         if (b) {

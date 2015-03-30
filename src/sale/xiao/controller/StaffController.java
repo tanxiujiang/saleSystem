@@ -2,10 +2,12 @@ package sale.xiao.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
 
+import sale.xiao.entity.OrderEntity;
 import sale.xiao.entity.ProductEntity;
 import sale.xiao.entity.StaffEntity;
 import sale.xiao.service.StaffService;
@@ -105,8 +108,34 @@ public class StaffController {
 	 */
 	@RequestMapping(value="/buyproduct",method=RequestMethod.POST)
 	public String BuyProductByStaff(HttpServletRequest request,ProductEntity product){
-	    int productId = product.getId();
-	    System.out.println(productId);
-	    return "";
+	    
+	    // 构建order对象
+	    OrderEntity order = new OrderEntity();
+	    
+	    // 获取登录信息
+	    HttpSession session = SaleUtil.getSession(request);
+	    StaffEntity staff = (StaffEntity) session.getAttribute("staff");
+	    
+	    // 如果没有登录,提示请登录
+	    if(null == staff){
+	        return "请返回首页登录，否则无法下单.";
+	    }
+	    
+	    // order基本信息填充
+	    order.setStaff_id(staff.getId());
+	    order.setAmount(Integer.valueOf(request.getParameter("qty")));
+	    order.setSell_date(SaleUtil.GetCurrentDate());
+	    order.setSell_price(product.getSell_price());
+	    order.setProduct_id(product.getId());
+	    boolean b = false;
+	    try {
+            b = staffService.AddOrderAndUpdateProductAmount(order);
+            
+        } catch (SQLException e) {
+            System.out.println("购买产品失败");
+            e.printStackTrace();
+        }
+        
+        return b == true ? "success" : "error";
 	}
 }	

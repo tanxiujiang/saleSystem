@@ -36,7 +36,7 @@ public interface StaffMapper {
 	* @param id
 	* @return
 	 */
-	public ProductEntity GetProductById(@Param("id")Integer id);
+	public ProductEntity GetProductById(@Param("id")String id);
 	
 	/**
 	 * 
@@ -46,7 +46,7 @@ public interface StaffMapper {
 	* @param qty   销售数量
 	* @return  
 	 */
-	public int UpdateProductAmount(@Param("id")Integer id,@Param("qty")Integer qty);
+	public int UpdateProductAmount(@Param("id")String id,@Param("qty")Integer qty);
 	
 	/**
 	 * 

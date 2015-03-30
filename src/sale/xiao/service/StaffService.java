@@ -92,8 +92,7 @@ public class StaffService {
      * @return
      */
     public ProductEntity QueryProductById(String productId) {
-        int id = Integer.valueOf(productId);
-        ProductEntity product = staffMapper.GetProductById(id);
+        ProductEntity product = staffMapper.GetProductById(productId);
         return product;
     }
 
@@ -108,7 +107,7 @@ public class StaffService {
      * @return
      * @throws SQLException
      */
-    public boolean AddOrderAndUpdateProductAmount(OrderEntity order, String qty) throws SQLException {
+    public boolean AddOrderAndUpdateProductAmount(OrderEntity order) throws SQLException {
 
         // 事务工厂
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
@@ -116,7 +115,7 @@ public class StaffService {
         boolean b = false;
         try {
             staffMapper.AddOrder(order);
-            staffMapper.UpdateProductAmount(order.getId(), Integer.valueOf(qty));
+            staffMapper.UpdateProductAmount(order.getProduct_id(), order.getAmount());
             b = true;
         } catch (Exception e) {
             newTransaction.rollback();

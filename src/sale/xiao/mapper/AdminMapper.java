@@ -1,6 +1,5 @@
 package sale.xiao.mapper;
 
-import java.awt.Stroke;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -26,7 +25,7 @@ public interface AdminMapper {
     * @param email
     * @return
      */
-    public AdminEntity GetAdmin(@Param("email") String email);
+    public StaffEntity GetAdmin(@Param("email") String email);
     
     /**
      * 

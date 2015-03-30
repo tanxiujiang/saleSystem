@@ -19,9 +19,9 @@ require(['config'],function() {
 			$(".buyProduct").click(function(){
 				var data = $("form.hiden").serialize();
 				$.post("buyproduct",data).done(function(){
-					
-				}).fail(function(){
-					
+					alert(data);
+				}).fail(function(data){
+					alert(data);
 				});
 			});
 		});

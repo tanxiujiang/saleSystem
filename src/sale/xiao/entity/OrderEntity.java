@@ -9,10 +9,10 @@ package sale.xiao.entity;
  */
 public class OrderEntity {
     private Integer id;
-    private Integer product_id;
+    private String product_id;
     private Integer staff_id;
     private Integer amount;
-    private Float   sell_price;
+    private double   sell_price;
     private String  sell_date;
 
 
@@ -29,13 +29,15 @@ public class OrderEntity {
 
 
 
-    public Integer getProduct_id() {
+
+
+    public String getProduct_id() {
         return product_id;
     }
 
 
 
-    public void setProduct_id(Integer pProduct_id) {
+    public void setProduct_id(String pProduct_id) {
         product_id = pProduct_id;
     }
 
@@ -63,15 +65,13 @@ public class OrderEntity {
         amount = pAmount;
     }
 
-
-
-    public Float getSell_price() {
+    public double getSell_price() {
         return sell_price;
     }
 
 
 
-    public void setSell_price(Float pSell_price) {
+    public void setSell_price(double pSell_price) {
         sell_price = pSell_price;
     }
 
