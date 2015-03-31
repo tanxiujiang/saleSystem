@@ -151,4 +151,20 @@ public class StaffController {
 			out.print("error");
 		}
 	}
+	
+	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
+	public String GoStatistics(){
+		return "staff/statistics";
+	}
+	
+	@RequestMapping(value = "/showproducts", method = RequestMethod.GET)
+	public String ShowProducts(){
+		return "staff/products";
+	}
+	
+	@RequestMapping(value = "/showstaffs", method = RequestMethod.GET)
+	public String ShowStaffs(){
+		return "staff/staffs";
+	}
+	
 }

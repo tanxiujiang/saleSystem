@@ -79,6 +79,13 @@
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
           <p><a class="btn btn-default" href="${basePath}/staff/salepage" role="button">Go to page »</a></p>
         </div>
+        
+        <div class="col-md-6">
+          <h2>统计查询</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="${basePath}/staff/statistics" role="button">Go to page »</a></p>
+        </div>
+        
       </div>
       <hr>
       <footer>
