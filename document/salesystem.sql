@@ -1,20 +1,19 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
-Source Server Version : 50621
+Source Server         : localhost
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : salesystem
 
 Target Server Type    : MYSQL
-Target Server Version : 50621
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-30 23:09:19
+Date: 2015-03-31 19:23:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
 -- ----------------------------
 -- Table structure for `admin`
 -- ----------------------------
@@ -31,24 +30,6 @@ CREATE TABLE `admin` (
 -- Records of admin
 -- ----------------------------
 INSERT INTO `admin` VALUES ('1', '1026741594@qq.com', '123', '肖苗');
-
--- ----------------------------
--- Table structure for `order`
--- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) NOT NULL,
-  `staff_id` int(11) NOT NULL,
-  `amount` int(11) NOT NULL COMMENT '卖出数量',
-  `sell_price` float NOT NULL COMMENT '售价',
-  `sell_date` varchar(255) NOT NULL COMMENT '卖出时间，字符串存储',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of order
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `product`
@@ -72,7 +53,8 @@ CREATE TABLE `product` (
 -- ----------------------------
 INSERT INTO `product` VALUES ('1', 'U盘', '120', '150', '100', '80', '红色8G', null, '0');
 INSERT INTO `product` VALUES ('2', 'Iphone', '4800', '5500', '1200', '100', '金色', null, '0');
-INSERT INTO `product` VALUES ('20150330091852027859', '裙子', '145', '178', '122', '122', '娅 2015春夏新款韩版女装连衣裙欧根纱修身公主裙雪纺无袖背心印花裙子0066 粉红色 L         ', null, '0');
+INSERT INTO `product` VALUES ('20150330091852027859', '裙子', '145', '178', '122', '102', '娅 2015春夏新款韩版女装连衣裙欧根纱修身公主裙雪纺无袖背心印花裙子0066 粉红色 L         ', null, '0');
+INSERT INTO `product` VALUES ('20150331065616065591', '诺基亚5230', '1150', '1350', '100', '100', '诺基亚全国质量第一，销量第一。', null, '0');
 INSERT INTO `product` VALUES ('3', '纯棉超薄羽绒服', '120', '150', '100', '100', '跳楼价，赶紧抢购吧。', '', '0');
 INSERT INTO `product` VALUES ('4', '纯棉超薄羽绒服', '120', '150', '100', '100', '跳楼价，赶紧抢购吧。', '', '0');
 INSERT INTO `product` VALUES ('5', '小米(Note)', '1200', '1500', '100', '100', '价格实惠，便宜好用.			         ', null, '0');
@@ -105,6 +87,41 @@ INSERT INTO `product_staff` VALUES ('10', '1', '5');
 INSERT INTO `product_staff` VALUES ('11', '1', '5');
 INSERT INTO `product_staff` VALUES ('12', '1', '5');
 INSERT INTO `product_staff` VALUES ('13', '1', '5');
+
+-- ----------------------------
+-- Table structure for `sale_order`
+-- ----------------------------
+DROP TABLE IF EXISTS `sale_order`;
+CREATE TABLE `sale_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` varchar(30) NOT NULL,
+  `staff_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL COMMENT '卖出数量',
+  `sell_price` double NOT NULL COMMENT '售价',
+  `sell_date` varchar(255) NOT NULL COMMENT '卖出时间，字符串存储',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sale_order
+-- ----------------------------
+INSERT INTO `sale_order` VALUES ('2', '1', '10', '2', '150', '2015-03-30 11:27:57');
+INSERT INTO `sale_order` VALUES ('3', '1', '10', '2', '150', '2015-03-30 11:27:57');
+INSERT INTO `sale_order` VALUES ('4', '1', '10', '2', '150', '2015-03-30 11:27:57');
+INSERT INTO `sale_order` VALUES ('5', '2', '10', '2', '5500', '2015-03-30 12:15:27');
+INSERT INTO `sale_order` VALUES ('6', '20150330052037005969', '10', '20', '300', '2015-03-30 05:28:59');
+INSERT INTO `sale_order` VALUES ('7', '20150330052037005969', '10', '10', '300', '2015-03-30 05:38:51');
+INSERT INTO `sale_order` VALUES ('8', '20150330052037005969', '10', '5', '300', '2015-03-30 05:45:01');
+INSERT INTO `sale_order` VALUES ('9', '20150330091852027859', '10', '2', '178', '2015-03-31 04:46:45');
+INSERT INTO `sale_order` VALUES ('10', '20150330091852027859', '10', '2', '178', '2015-03-31 04:50:07');
+INSERT INTO `sale_order` VALUES ('11', '20150330091852027859', '10', '2', '178', '2015-03-31 04:53:19');
+INSERT INTO `sale_order` VALUES ('12', '20150330091852027859', '10', '2', '178', '2015-03-31 04:56:03');
+INSERT INTO `sale_order` VALUES ('13', '20150330091852027859', '10', '2', '178', '2015-03-31 05:00:15');
+INSERT INTO `sale_order` VALUES ('14', '20150330091852027859', '10', '2', '178', '2015-03-31 05:13:46');
+INSERT INTO `sale_order` VALUES ('15', '20150330091852027859', '10', '2', '178', '2015-03-31 05:17:19');
+INSERT INTO `sale_order` VALUES ('16', '20150330091852027859', '10', '2', '178', '2015-03-31 05:20:06');
+INSERT INTO `sale_order` VALUES ('17', '20150330091852027859', '10', '2', '178', '2015-03-31 05:42:56');
+INSERT INTO `sale_order` VALUES ('18', '20150330091852027859', '10', '2', '178', '2015-03-31 06:02:03');
 
 -- ----------------------------
 -- Table structure for `sale_product`
@@ -140,7 +157,7 @@ CREATE TABLE `staff` (
   `is_delete` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0表示逻辑未删除，1表示逻辑删除',
   `role` int(11) NOT NULL DEFAULT '0' COMMENT '0表示职工，2表示管理员',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of staff
@@ -150,6 +167,8 @@ INSERT INTO `staff` VALUES ('2', '1026741592@qq.com', 'leina', '女', '222222', 
 INSERT INTO `staff` VALUES ('8', '1026741593@qq.com', 'lisary', '男', '111111', '18202888720', '好样儿的', '0', '0', '0');
 INSERT INTO `staff` VALUES ('9', '1026741594@qq.com', 'leina', 'on', '111111', '18202888720', '大家好才是真的好，广州好滴.', '5', '0', '0');
 INSERT INTO `staff` VALUES ('10', '1026741595@qq.com', 'lisary', 'on', '111111', '13540660605', '大学本科，现在在成都安科思有限公司上班.		         ', '5', '0', '0');
+INSERT INTO `staff` VALUES ('11', null, 'fanny', 'on', '111111', '13540660605', '实习生.			         ', '2', '0', '0');
+INSERT INTO `staff` VALUES ('12', null, 'zhangbing', '男', '111111', '12123123132132', '二逼青年欢乐多', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `store`
