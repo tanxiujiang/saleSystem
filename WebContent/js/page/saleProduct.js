@@ -18,17 +18,22 @@ require(['config'],function() {
 			// 点击卖出产品
 			$(".buyProduct").click(function(){
 				var data = $("form.hiden").serialize();
-				$.post("buyproduct",data).done(function(){
-					if(data == "login"){
-						window.location.href="/saleSystem/sale/index";
+				$.ajax({
+					url : "buyproduct",
+					dataType : 'text',
+					type : 'post',
+					data : data,
+					success:function(data){
+						if(data == "login"){
+							window.location.href="/saleSystem/sale/index";
+						}
+						else
+						{
+							alert(data);
+						}
 					}
-					else
-					{
-						alert(data);
-					}
-				}).fail(function(data){
-					alert(data);
-				},"text");
+				});
+				
 			});
 		});
 		

@@ -22,8 +22,7 @@ public class SessionFactory {
     /**
      * 
      * @return SqlSessionFactory
-     */
-    public static SqlSessionFactory GetSqlSessionFactory() {
+     */    public static SqlSessionFactory GetSqlSessionFactory() {
         InputStream inputStream = null;
         try {
             inputStream = Resources.getResourceAsStream(resource);
@@ -35,15 +34,19 @@ public class SessionFactory {
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         }
 
-        // 检查connection是否还可以
-        Connection conn = sqlSessionFactory.openSession(true).getConnection();
+        return sqlSessionFactory;
+    }
+    
+    
+    public static SqlSessionFactory GetSqlSessionFactory(boolean isCreate) {
+        InputStream inputStream = null;
         try {
-            if (conn.isClosed()) {
-                sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            inputStream = Resources.getResourceAsStream(resource);
+        } catch (IOException e) {
+            System.err.println("加载数据配置文件失败,Error is " + e.getMessage());
         }
+
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
         return sqlSessionFactory;
     }

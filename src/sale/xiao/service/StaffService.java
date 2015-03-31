@@ -1,5 +1,6 @@
 package sale.xiao.service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -27,15 +28,11 @@ public class StaffService {
     SqlSession        session           = null;
     StaffMapper       staffMapper       = null;
 
-
-
-    public StaffService() {
-        sqlSessionFactory = SessionFactory.GetSqlSessionFactory();
+    public void init(){
+        sqlSessionFactory = SessionFactory.GetSqlSessionFactory(true);
         session = sqlSessionFactory.openSession(true);
         staffMapper = session.getMapper(StaffMapper.class);
     }
-
-
 
     /**
      * @descripton 用户登录
@@ -55,7 +52,7 @@ public class StaffService {
      * @return
      */
     public List<StaffEntity> GetStafList() {
-
+        this.init();
         List<StaffEntity> staffList = staffMapper.GetStaffList();
         return staffList;
     }
@@ -67,6 +64,7 @@ public class StaffService {
      * @return
      */
     public StaffEntity GetStaffPerformanceById(String staffId) {
+        this.init();
         StaffEntity staff = staffMapper.GetPerformanceByStaffId(Integer.valueOf(staffId));
         return staff;
     }
@@ -78,7 +76,7 @@ public class StaffService {
      * @return
      */
     public List<StaffEntity> GetStafList(int pageSize) {
-
+        this.init();
         return null;
     }
 
@@ -92,7 +90,14 @@ public class StaffService {
      * @return
      */
     public ProductEntity QueryProductById(String productId) {
-        ProductEntity product = staffMapper.GetProductById(productId);
+        this.init();
+        ProductEntity product = null;
+        try {
+             product = staffMapper.GetProductById(productId);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
         return product;
     }
 
@@ -108,10 +113,11 @@ public class StaffService {
      * @throws SQLException
      */
     public boolean AddOrderAndUpdateProductAmount(OrderEntity order) throws SQLException {
-
+        this.init();
         // 事务工厂
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
         Transaction newTransaction = transactionFactory.newTransaction(session.getConnection());
+        
         boolean b = false;
         try {
             staffMapper.AddOrder(order);

@@ -38,6 +38,7 @@
 					  			<td>${product.remain_amount}</td>
 					  			<td>
 					  				<a href="#">下架</a>
+					  				<a href="#">销量查询</a>
 					  			</td>
 					  		</tr>
 				  	</c:forEach>

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add Staff</title>
-<script type="text/javascript" src="${basePath}/js/lib/require-2.1.14.js" language="javascript" charset="utf-8" data-main="${basePath}/js/page/home"></script>
+<script type="text/javascript" src="${basePath}/js/lib/require-2.1.14.js" language="javascript" charset="utf-8" data-main="${basePath}/js/page/addStaff"></script>
 </head>
 <body>
 	<div class="panel panel-default">
@@ -15,6 +15,12 @@
    		</div>
 		   <div class="panel-footer">
 		   		<form class="form-horizontal" role="form" action="${basePath}/admin/addstaff" method="post">
+		   			  <div class="form-group">
+					      <label for="lastname" class="col-sm-2 control-label">邮箱:</label>
+					      <div class="col-sm-8">
+					         <input type="text" class="form-control" name="email" value="${staff.email }">
+					      </div>
+					   </div>
 					   <div class="form-group">
 					      <label for="lastname" class="col-sm-2 control-label">姓名:</label>
 					      <div class="col-sm-8">
