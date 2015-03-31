@@ -10,12 +10,15 @@
 <body>
 	<form class="navbar-form navbar-left" role="search">
 		<div class="form-group">
-			<select>
+			<select class="form-control" style="width: 120px">
+				<option></option>
+			</select>
+			<select class="form-control" style="width: 120px">
 				<option></option>
 			</select>
 	    	<input type="text" class="form-control" placeholder="Search" onClick="WdatePicker()">
 	 	</div>
-	  <button type="submit" class="btn btn-default">Submit</button>
+	  <button type="submit" class="btn btn-default">统计查询</button>
 	</form>
 </body>
 </html>
