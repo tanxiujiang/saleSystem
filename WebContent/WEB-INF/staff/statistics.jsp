@@ -10,9 +10,9 @@
 <body>
 	<div class="container" style="height: 500px">
 		<ul class="nav nav-tabs">
-		  <li role="presentation" class="active"><a href="${basePath}/sale/index">Home</a></li>
-		  <li role="presentation"><a href="javascript:void(0)" class="products">products</a></li>
 		  <li role="presentation"><a href="javascript:void(0)" class="staffs">staffs</a></li>
+		  <li role="presentation"><a href="javascript:void(0)" class="products">products</a></li>
+		  <li role="presentation"><a href="${basePath}/sale/index">Home</a></li>
 		</ul>
 		<iframe src="#" id="showContent" style="width: 100%;height: 100%;border: 0px"></iframe>
 	</div>

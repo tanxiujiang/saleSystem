@@ -1,4 +1,4 @@
-require(['config'],function() {
+ require(['config'],function() {
 			require(['jquery', 'bootstrap', 'echarts/echarts','echarts/chart/bar' ],function($, bootstrap, ec, bar) {
 						$(function() {
 							/**

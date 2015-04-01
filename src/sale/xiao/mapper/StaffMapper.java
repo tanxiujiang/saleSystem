@@ -1,12 +1,14 @@
 package sale.xiao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
 import sale.xiao.entity.OrderEntity;
 import sale.xiao.entity.ProductEntity;
 import sale.xiao.entity.StaffEntity;
+import sale.xiao.entity.StoreEntity;
 
 /**
  * 
@@ -57,4 +59,27 @@ public interface StaffMapper {
 	 */
 	public int AddOrder(@Param("order")OrderEntity order);
 	
+	/**
+	 * 
+	* <method description>
+	*  查询商店名称列表
+	* @return
+	 */
+	public List<StoreEntity> loadStores();
+	
+	/**
+	 * 
+	* <method description>
+	* 加载每个商店的员工信息
+	* @return
+	 */
+	public List<StaffEntity> loadStaffs(@Param("store_id")int store_id);
+	
+	/**
+	 * 
+	* <method description>
+	* 
+	* @return
+	 */
+	public List<Map<String,Object>> loadStatisticByStaffId(@Param("staff_id")int staff_id,@Param("queryDate")String queryDate );
 }

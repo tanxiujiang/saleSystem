@@ -13,6 +13,7 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import sale.xiao.entity.OrderEntity;
 import sale.xiao.entity.ProductEntity;
 import sale.xiao.entity.StaffEntity;
+import sale.xiao.entity.StoreEntity;
 import sale.xiao.factory.SessionFactory;
 import sale.xiao.mapper.StaffMapper;
 
@@ -58,7 +59,28 @@ public class StaffService {
     }
 
 
-
+    /**
+     * @descriptor:根据商店编号去加载员工信息
+     * @return
+     */
+    public List<StaffEntity> GetStafList(int store_id) {
+        this.init();
+        List<StaffEntity> staffList = staffMapper.loadStaffs(store_id);
+        return staffList;
+    }
+    
+    /**
+     * 
+    * <method description>
+    * 加载商店下来列表信息
+    * @return
+     */
+    public List<StoreEntity> GetStoreList(){
+        this.init();
+        List<StoreEntity> storeList = staffMapper.loadStores();
+        return storeList;
+    }
+    
     /**
      * @descriptor:获取全部数据信息
      * @return
@@ -67,17 +89,6 @@ public class StaffService {
         this.init();
         StaffEntity staff = staffMapper.GetPerformanceByStaffId(Integer.valueOf(staffId));
         return staff;
-    }
-
-
-
-    /**
-     * @descriptor:获取分页数据信息
-     * @return
-     */
-    public List<StaffEntity> GetStafList(int pageSize) {
-        this.init();
-        return null;
     }
 
 

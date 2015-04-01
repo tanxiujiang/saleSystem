@@ -1,6 +1,7 @@
 package sale.xiao.test;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,6 +14,7 @@ import sale.xiao.entity.StoreEntity;
 import sale.xiao.factory.SessionFactory;
 import sale.xiao.mapper.StaffMapper;
 import sale.xiao.service.AdminService;
+import sale.xiao.util.SaleUtil;
 
 public class TestDao {
 	SqlSessionFactory sqlSessionFactory = null;
@@ -63,6 +65,14 @@ public class TestDao {
 	    p.setProduct_name("纯棉超薄羽绒服");
 	    p.setImage_url("");
 	    admin.AddProducts(p);
+	}
+	
+	@Test
+	public void GetMap(){
+	    SqlSession session = sqlSessionFactory.openSession();
+        StaffMapper mapper = session.getMapper(StaffMapper.class);
+        List<Map<String,Object>> map = mapper.loadStatisticByStaffId(10,null);
+        System.out.println(SaleUtil.GetGsonStr(map));
 	}
 	
 }

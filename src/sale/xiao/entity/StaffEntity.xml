@@ -6,11 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="sale.xiao.mapper.StaffMapper">
 	<!-- 替代，语句中的内容,简写 -->
 	<sql id="cols">
-		id,name,sex,pwd,tel,introduce      
+		id,name,sex,pwd,tel,introduction     
     </sql>
     
     <sql id="col">
-  	  name,sex,tel,introduce
+  	  name,sex,tel,introduction
     </sql>
     
 	<!-- 查询所有记录 -->
@@ -63,4 +63,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		product_staff.staffid INNER join product ON product_staff.productid =
 		product.id WHERE staff.id = #{id} GROUP BY product_staff.productid 
     </select>
+    
+	<!--    加载商店列表信息-->
+    <select id="loadStores" resultType="sale.xiao.entity.StoreEntity">
+    	select id,store_name from store
+    </select>
+    
+	<!--    加载商店下面的职工信息-->
+    <select id="loadStaffs" resultType="sale.xiao.entity.StaffEntity" parameterType="int">
+    	select id,name from staff where store_id = ${store_id} and is_delete = 0
+    </select>
+    
+    <select id="loadStatisticByStaffId" resultMap="statistic-map">
+    	SELECT product_id,staff_id,SUM(amount) as amount,sell_price from sale_order
+    	<where>
+    		staff_id = #{staff_id}
+    	</where>
+    	<if test="queryDate != null">
+    		and LEFT(sell_date,10) = #{queryDate}
+    	</if>
+    	GROUP BY product_id
+    </select>
+    
+    <resultMap type="java.util.HashMap" id="statistic-map" autoMapping="true">
+    		 <result property="product_id" column="product_id"/>
+  			 <result property="staff_id" column="staff_id"/>
+  		     <result property="amount" column="amount"/>
+  		     <result property="sell_price" column="sell_price"/>
+    </resultMap>
+    
 </mapper>
