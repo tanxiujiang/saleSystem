@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -224,7 +225,15 @@ public class StaffController {
     * <method description>
     * 加载员工统计信息
      */
+    @RequestMapping(value = "/loadStatisticByStaffId", method = RequestMethod.POST)
     public void loadStatisticByStaffId(HttpServletResponse response,String staffId,String queryDate){
-        
+        List<Map<String,Object>> map = staffService.loadStatisticByStaffId(staffId, queryDate);
+        String mapJson = SaleUtil.GetGsonStr(map);
+        try {
+            PrintWriter out = response.getWriter();
+            out.print(mapJson);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

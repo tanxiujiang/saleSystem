@@ -21,5 +21,7 @@
 	 	</div>
 	  <button type="button" class="btn btn-default statisticsByStaffId">统计查询</button>
 	</form>
+	
+	<div id="main" style="height:355px;width: 1100px;margin-top: 45px"></div>
 </body>
 </html>

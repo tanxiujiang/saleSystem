@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id="loadStatisticByStaffId" resultMap="statistic-map">
-    	SELECT product_id,staff_id,SUM(amount) as amount,sell_price from sale_order
+    	SELECT product_id,staff_id,SUM(amount) as amount,sale_order.sell_price,product.product_name FROM sale_order INNER JOIN product ON sale_order.product_id = product.id 
     	<where>
     		staff_id = #{staff_id}
     	</where>
@@ -90,6 +90,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   			 <result property="staff_id" column="staff_id"/>
   		     <result property="amount" column="amount"/>
   		     <result property="sell_price" column="sell_price"/>
+  		     <result property="product_name" column="product_name"/>
     </resultMap>
     
 </mapper>

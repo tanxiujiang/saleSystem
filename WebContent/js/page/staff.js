@@ -1,5 +1,5 @@
 require(['config'], function(){
-	require(['jquery'],function($){
+	require(['jquery','echarts/echarts','echarts/chart/bar'],function($,ec){
 		$(function(){
 			// 加载下拉列表
 			$(".store-list").click(function(){
@@ -73,17 +73,57 @@ require(['config'], function(){
 				
 				$.ajax({
 					dataType:"json",
-					url:'loadstaffs',
+					url:'loadStatisticByStaffId',
 					data:{
 						staffId:staffId,
 						queryDate:queryDate
 					},
 					type:'post',
 					success:function(data){
-						renderStaffSelect($(".staff-list"),data);
+						alert(data);
 					}
 				});
 			});
+			
+			
+			
+			
+			
+			// 柱状图
+			var renderByHistogram  = function(containerElement,title,names,datas){
+				var myChart = ec.init(containerElement); 
+				// 参数设置
+				 var option = {
+		                    tooltip: {
+		                        show: true
+		                    },
+		                    legend: {
+		                        data:['销量']
+		                    },
+		                    xAxis : [
+		                        {
+		                            type : 'category',
+		                            data : names
+		                        }
+		                    ],
+		                    yAxis : [
+		                        {
+		                            type : 'value'
+		                        }
+		                    ],
+		                    series : [
+		                        {
+		                            "name":"销量",
+		                            "type":"bar",
+		                            "data":datas
+		                        }
+		                    ]
+		                };
+				  
+				  	// 为echarts对象加载数据 
+				  myChart.setOption(option); 
+			};
+			
 			
 		// 默认document	
 		});

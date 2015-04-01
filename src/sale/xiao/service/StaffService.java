@@ -3,6 +3,7 @@ package sale.xiao.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -145,4 +146,21 @@ public class StaffService {
         return b;
     }
 
+   /**
+    * 根据员工编号加载产品销售量信息
+    * @param staffId
+    * @param queryDate
+    * @return
+    */
+    public List<Map<String,Object>> loadStatisticByStaffId(String staffId,String queryDate){
+    	this.init();
+    	if(null != queryDate && !queryDate.equals("")){
+    		return staffMapper.loadStatisticByStaffId(Integer.valueOf(staffId), queryDate);
+    	}
+    	else
+    	{
+    		return staffMapper.loadStatisticByStaffId(Integer.valueOf(staffId), null);
+    	}
+    }
+    
 }
