@@ -8,7 +8,7 @@
 <script type="text/javascript" src="${basePath}/js/lib/require-2.1.14.js" language="javascript" charset="utf-8" data-main="${basePath}/js/page/statistics"></script>
 </head>
 <body>
-	<div class="container" style="height: 500px">
+	<div class="container" style="height: 800px">
 		<ul class="nav nav-tabs">
 		  <li role="presentation"><a href="javascript:void(0)" class="staffs">staffs</a></li>
 		  <li role="presentation"><a href="javascript:void(0)" class="products">products</a></li>
