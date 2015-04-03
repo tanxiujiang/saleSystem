@@ -236,4 +236,23 @@ public class StaffController {
             e.printStackTrace();
         }
     }
+    
+    /**
+     * 
+    * <method description>
+    * 根据月份加载产品的销售量和销售总价
+    * @param response
+    * @param queryDate
+     */
+    @RequestMapping(value = "/loadProductStatisticsByMonth", method = RequestMethod.POST)
+    public void LoadProductStatisticsByMonth(HttpServletResponse response,String queryDate){
+        List<Map<String,Object>> map = staffService.LoadProductStatisticsByMonth(queryDate);
+        String mapJson = SaleUtil.GetGsonStr(map);
+        try {
+            PrintWriter out = response.getWriter();
+            out.print(mapJson);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

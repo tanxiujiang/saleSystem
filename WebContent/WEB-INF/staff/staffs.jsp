@@ -14,7 +14,7 @@
 		<div class="form-group">
 			<select class="form-control store-list" style="width: 120px"></select>
 			<select class="form-control staff-list" style="width: 120px"></select>
-	    	<input type="text" class="form-control" placeholder="Search" onClick="WdatePicker({dateFmt:'yyyy-M',minDate:'2014-12',maxDate:'%y-%M'})" name="queryDate">
+	    	<input type="text" class="form-control" placeholder="Search" onClick="WdatePicker({dateFmt:'yyyy-MM',minDate:'2014-12',maxDate:'%y-%M'})" name="queryDate">
 	 	</div>
 	  <button type="button" class="btn btn-default statisticsByStaffId">统计查询</button>
 	</form>

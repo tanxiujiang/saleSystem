@@ -36,8 +36,7 @@
 				  			<td>${staff.tel}</td>
 				  			<td>国美电器</td>
 				  			<td>
-				  				<a href="#">解雇</a>
-				  				<a href="javascript:void(0)" class="loadPerformanceByStaffId" value="${staff.id}">业绩</a>
+				  				<a href="javascript:void(0)" class="shutDownStaff" value="${staff.id}">解雇</a>
 				  			</td>
 				  		</tr>
 				  	</c:forEach>

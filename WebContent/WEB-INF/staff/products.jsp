@@ -12,7 +12,7 @@
 <body>
 	<form class="navbar-form navbar-left" role="search">
 		<div class="form-group">
-	    	<input type="text" class="form-control" placeholder="Search" onClick="WdatePicker({dateFmt:'yyyy-M',minDate:'2014-12',maxDate:'%y-%M'})">
+	    	<input type="text" class="form-control" placeholder="Search" onClick="WdatePicker({dateFmt:'yyyy-MM',minDate:'2014-12',maxDate:'%y-%M'})" name="queryDate">
 	 	</div>
 	  <button type="button"" class="btn btn-default productStatisticsByMonth">查询</button>
 	</form>

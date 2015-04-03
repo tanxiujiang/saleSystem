@@ -163,4 +163,15 @@ public class StaffService {
     	}
     }
     
+    /**
+     * 
+    * <method description>
+    * 根据月份查询统计每月各种产品的销售量和销售总金额
+    * @param queryDate
+    * @return
+     */
+    public List<Map<String,Object>> LoadProductStatisticsByMonth(String queryDate){
+        this.init();
+        return staffMapper.LoadProductStatisticsByMonth(queryDate);
+    }
 }

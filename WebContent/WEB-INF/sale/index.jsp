@@ -28,7 +28,7 @@
               <input type="password" placeholder="Password" class="form-control" name="pwd">
             </div>
             <button type="submit" class="btn btn-success">登陆</button>
-            <c:if test="${not empty staff}">
+            <c:if test="${not empty staff }">
             	<span style="color: red;">欢迎你：${staff.name}</span>
             </c:if>
           </form>
@@ -46,46 +46,60 @@
         	它不仅能够方便地进行图形分析和表格处理，其更强大的功能还体现在数据的统计分析研究方面。电子商务运营商方便控制库存、实现网络交易，
                                 随时随地进行电子商务交易信息化，为领导经营决策提供科学依据，让金融企业在合理降低经营成本、加快资金周转等方面取得进步,使金融企业的竞争力增强。
 		</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+<!--        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>-->
       </div>
     </div>
     
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-6">
-          <h2>添加商品</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-          <p><a class="btn btn-default" href="${basePath}/admin/goproduct" role="button">Go to page »</a></p>
-        </div>
-        <div class="col-md-6">
-          <h2>添加职工</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="${basePath}/admin/gostaff" role="button">Go to page »</a></p>
-       </div>
-        <div class="col-md-6">
-          <h2>商品查询</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="${basePath}/admin/productlist" role="button">Go to page »</a></p>
-        </div>
-        <div class="col-md-6">
-          <h2>职工查询</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="${basePath}/admin/stafflist" role="button">Go to page »</a></p>
-        </div>
-        
-        <div class="col-md-6">
-          <h2>出售</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="${basePath}/staff/salepage" role="button">Go to page »</a></p>
-        </div>
-        
-        <div class="col-md-6">
-          <h2>统计查询</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="${basePath}/staff/statistics" role="button">Go to page »</a></p>
-        </div>
-        
+		<!--      职工-->
+      <c:if test="${not empty staff && staff.role == 0 }">
+				 <div class="col-md-4">
+			          <h2>出售</h2>
+			          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+			          <p><a class="btn btn-default" href="${basePath}/staff/salepage" role="button">Go to page »</a></p>
+       			 </div>
+		        <div class="col-md-4">
+		          <h2>统计查询</h2>
+		          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+		          <p><a class="btn btn-default" href="${basePath}/staff/statistics" role="button">Go to page »</a></p>
+		        </div>		
+      </c:if>
+      
+      <!--      	管理员-->
+      <c:if test="${not empty staff && staff.role == 2 }">
+      			 <div class="col-md-6">
+			          <h2>添加商品</h2>
+			          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+			          <p><a class="btn btn-default" href="${basePath}/admin/goproduct" role="button">Go to page »</a></p>
+		        </div>
+		        <div class="col-md-6">
+			          <h2>添加职工</h2>
+			          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+			          <p><a class="btn btn-default" href="${basePath}/admin/gostaff" role="button">Go to page »</a></p>
+		       </div>
+		        <div class="col-md-6">
+			          <h2>商品查询</h2>
+			          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+			          <p><a class="btn btn-default" href="${basePath}/admin/productlist" role="button">Go to page »</a></p>
+		        </div>
+		        <div class="col-md-6">
+			          <h2>职工查询</h2>
+			          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+			          <p><a class="btn btn-default" href="${basePath}/admin/stafflist" role="button">Go to page »</a></p>
+		        </div>
+		         <div class="col-md-6">
+			          <h2>出售</h2>
+			          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+			          <p><a class="btn btn-default" href="${basePath}/staff/salepage" role="button">Go to page »</a></p>
+       			 </div>
+		        <div class="col-md-6">
+		          <h2>统计查询</h2>
+		          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+		          <p><a class="btn btn-default" href="${basePath}/staff/statistics" role="button">Go to page »</a></p>
+		        </div>	
+     	 </c:if>
       </div>
       <hr>
       <footer>

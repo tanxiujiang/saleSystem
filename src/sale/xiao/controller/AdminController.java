@@ -31,7 +31,9 @@ import sale.xiao.util.SaleUtil;
 public class AdminController {
 
     AdminService adminService = null;
-    
+
+
+
     // 这种方式添加以后在页面就使用admin.email 格式去实现传参数，否则就是email
     // @InitBinder("admin")
     // public void initBinder2(WebDataBinder binder) {
@@ -42,17 +44,19 @@ public class AdminController {
      * 初始化service类，加载数据信息
      */
     @ModelAttribute
-    public void initService(){
+    public void initService() {
         adminService = new AdminService();
     }
-    
+
+
+
     /**
      * 
-    * <method description>
-    * 做管理员登陆和职工登录入口
-    * @param request
-    * @param admin
-    * @return
+     * <method description> 做管理员登陆和职工登录入口
+     * 
+     * @param request
+     * @param admin
+     * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request, @ModelAttribute("admin") AdminEntity admin) {
@@ -61,6 +65,7 @@ public class AdminController {
             HttpSession session = SaleUtil.getSession(request);
             session.setAttribute("staff", o);
         }
+        
         return "redirect:../sale/index";
     }
 
@@ -121,6 +126,7 @@ public class AdminController {
     }
 
 
+
     /**
      * 
      * <method description> 添加职工
@@ -138,45 +144,50 @@ public class AdminController {
         request.setAttribute("staff", staff);
         return "admin/addStaff";
     }
-    
+
+
+
     /**
      * 
-    * <method description>
-    *   加载职工列表
-    * @param request
-    * @return
+     * <method description> 加载职工列表
+     * 
+     * @param request
+     * @return
      */
     @RequestMapping(value = "/stafflist", method = RequestMethod.GET)
-    public String StaffList(HttpServletRequest request){
+    public String StaffList(HttpServletRequest request) {
         List<StaffEntity> staffs = adminService.GetStaffs();
         request.setAttribute("staffs", staffs);
         return "admin/staffList";
     }
-    
+
+
+
     /**
      * 
-    * <method description>
-    * 加载产品列表
-    * @param request
-    * @return
+     * <method description> 加载产品列表
+     * 
+     * @param request
+     * @return
      */
     @RequestMapping(value = "/productlist", method = RequestMethod.GET)
-    public String ProductList(HttpServletRequest request){
-        List<ProductEntity>  products = adminService.GetProducts();
-        System.out.println(products.size());
+    public String ProductList(HttpServletRequest request) {
+        List<ProductEntity> products = adminService.GetProducts();
         request.setAttribute("products", products);
         return "admin/productList";
     }
-    
+
+
+
     /**
      * 
-    * <method description>
-    * 统计报销分析
-    * @param request
-    * @param staffId
+     * <method description> 统计报销分析
+     * 
+     * @param request
+     * @param staffId
      */
     @RequestMapping(value = "/loadPerformanceByStaffId", method = RequestMethod.POST)
-    public void LoadPerformanceByStaffId(HttpServletResponse response,String staffId){
+    public void LoadPerformanceByStaffId(HttpServletResponse response, String staffId) {
         String performanceStr = adminService.LoadPerformanceByStaffId(staffId);
         PrintWriter out = null;
         try {
@@ -185,10 +196,51 @@ public class AdminController {
         } catch (IOException e) {
             System.err.println("查询员工产品销售报表失败");
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             out.close();
         }
-        
     }
+
+
+
+    /**
+     * 
+     * <method description> 删除产品信息
+     * 
+     * @param response
+     * @param id
+     */
+    @RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
+    public void DeleteProduct(HttpServletResponse response, String id) {
+        PrintWriter out = null;
+        try {
+            adminService.DeleteProduct(id);
+            out = response.getWriter();
+            out.print("success");
+        } catch (Exception e) {
+            out.print("error");
+        }
+    }
+
+
+
+    /**
+     * 
+     * <method description> 删除职工信息
+     * 
+     * @param response
+     * @param id
+     */
+    @RequestMapping(value = "/deleteStaff", method = RequestMethod.POST)
+    public void DeleteStaff(HttpServletResponse response, String id) {
+        PrintWriter out = null;
+        try {
+            adminService.DeleteStaff(id);
+            out = response.getWriter();
+            out.print("success");
+        } catch (Exception e) {
+            out.print("error");
+        }
+    }
+
 }

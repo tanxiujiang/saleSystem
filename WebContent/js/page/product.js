@@ -21,64 +21,91 @@ require(
     ],
     function ($,ec) {
     	$(function(){
-    		var myChart = ec.init(document.getElementById('main'));
-            
-            optionNumber = {
-            	    title : {
-            	        text: '商品销售数量(台)',
-            	        subtext: '官方数据',
-            	        x:'center'
-            	    },
-            	    tooltip : {
-            	        trigger: 'item',
-            	        formatter: "{a} <br/>{b} : {c} ({d}%)"
-            	    },
-            	    legend: {
-            	        orient : 'vertical',
-            	        x : 'left',
-            	        data:['U盘(小米)','红米(2)','红米(note)','小米(3)','小米(4)']
-            	    },
-            	    toolbox: {
-            	        show : true,
-            	        feature : {
-            	            mark : {show: true},
-            	            dataView : {show: true, readOnly: false},
-            	            magicType : {
-            	                show: true, 
-            	                type: ['pie', 'funnel'],
-            	                option: {
-            	                    funnel: {
-            	                        x: '25%',
-            	                        width: '50%',
-            	                        funnelAlign: 'left',
-            	                        max: 1548
-            	                    }
-            	                }
-            	            },
-            	            restore : {show: true},
-            	            saveAsImage : {show: true}
-            	        }
-            	    },
-            	    calculable : true,
-            	    series : [
-            	        {
-            	            name:'点击切换',
-            	            type:'pie',
-            	            radius : '55%',
-            	            center: ['50%', '60%'],
-            	            data:[
-            	                {value:100, name:'U盘(小米)'},
-            	                {value:300, name:'红米(2)'},
-            	                {value:350, name:'红米(note)'},
-            	                {value:60, name:'小米(3)'},
-            	                {value:40, name:'小米(4)'}
-            	            ]
-            	        }
-            	    ]
-            	};
-            	   
-            optionPrice = {
-            	    title : {
+    		
+    		// 显示
+    		var showChart = function(names,amounts,prices){
+    			var myChart = ec.init(document.getElementById('main'));
+    			var option = switchOption('optionNumber',names,amounts,prices);
+    			
+    			// 为echarts对象加载数据 
+                myChart.setOption(option); 
+                 
+               var ecConfig = require('echarts/config');
+               // 添加事件
+              var changeShow = function (){
+	           	   if(myChart.getOption().title.text == '商品销售数量(台)'){
+	           		   var optionPrice = switchOption('optionPrice',names,amounts,prices);
+	           		   myChart.setOption(optionPrice); 
+	           	   }
+	           	   else
+	       		   {
+	           		   var optionNumber = switchOption('optionNumber',names,amounts,prices);
+	           		   myChart.setOption(optionNumber); 
+	       		   }
+	           	   
+               };
+               
+               myChart.on(ecConfig.EVENT.CLICK, changeShow);
+                 
+    		};
+    		
+    		//　参数对象构建
+    		var switchOption = function(whichName,names,amounts,prices){
+    			if(whichName == 'optionNumber'){
+	    				var optionNumber = {
+	                    	    title : {
+	            	        text: '商品销售数量(台)',
+	            	        subtext: '官方数据',
+	            	        x:'center'
+	            	    },
+	            	    tooltip : {
+	            	        trigger: 'item',
+	            	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+	            	    },
+	            	    legend: {
+	            	        orient : 'vertical',
+	            	        x : 'left',
+	            	        data:names
+	            	    },
+	            	    toolbox: {
+	            	        show : true,
+	            	        feature : {
+	            	            mark : {show: true},
+	            	            dataView : {show: true, readOnly: false},
+	            	            magicType : {
+	            	                show: true, 
+	            	                type: ['pie', 'funnel'],
+	            	                option: {
+	            	                    funnel: {
+	            	                        x: '25%',
+	            	                        width: '50%',
+	            	                        funnelAlign: 'left',
+	            	                        max: 1548
+	            	                    }
+	            	                }
+	            	            },
+	            	            restore : {show: true},
+	            	            saveAsImage : {show: true}
+	            	        }
+	            	    },
+	            	    calculable : true,
+	            	    series : [
+	            	        {
+	            	            name:'点击切换',
+	            	            type:'pie',
+	            	            radius : '55%',
+	            	            center: ['50%', '60%'],
+	            	            data:amounts
+	            	        }
+	            	    ]
+	            	};	
+	    				
+	    		return optionNumber;
+    			}
+    			else
+				{
+    				var optionPrice = {
+    	            	    title : {
             	        text: '商品销售总价(元)',
             	        subtext: '官方数据',
             	        x:'center'
@@ -90,7 +117,7 @@ require(
             	    legend: {
             	        orient : 'vertical',
             	        x : 'left',
-            	        data:['U盘(小米)','红米(2)','红米(note)','小米(3)','小米(4)']
+            	        data:names
             	    },
             	    toolbox: {
             	        show : true,
@@ -120,33 +147,59 @@ require(
             	            type:'pie',
             	            radius : '55%',
             	            center: ['50%', '60%'],
-            	            data:[
-            	                {value:880, name:'U盘(小米)'},
-            	                {value:1500, name:'红米(2)'},
-            	                {value:6000, name:'红米(note)'},
-            	                {value:4561, name:'小米(3)'},
-            	                {value:8624, name:'小米(4)'}
-            	            ]
+            	            data:prices
             	        }
             	    ]
-            	};
+    				};
+    				
+    			return optionPrice;
+				}
+    		};
             
-    			 // 为echarts对象加载数据 
-                myChart.setOption(optionNumber); 
+                // 点击查询事件
                 
-               var ecConfig = require('echarts/config');
-                // 添加事件
-               var changeShow = function (){
-            	   if(myChart.getOption().title.text == '商品销售数量(台)'){
-            		   myChart.setOption(optionPrice); 
-            	   }
-            	   else
-        		   {
-            		   myChart.setOption(optionNumber); 
-        		   }
+                $(".productStatisticsByMonth").click(function(){
+                	var $this = $(this);
+                	var queryDate = $("input[name='queryDate']").val();
+                	if(!queryDate){
+                		alert('请输入查询月份');
+                		return;
+                	}
+                	$.ajax({
+                		type:'post',
+                		dataType:'json',
+                		url:'loadProductStatisticsByMonth',
+                		data:{queryDate:queryDate},
+                		success:function(data){
+                			assemblyData(data);
+                		}
+                	});
+                });
+                
+                var assemblyData = function(data){
+                	var names = [];
+                	var amounts = [];
+                	var prices = [];
+                	for ( var i = 0; i < data.length; i++) {
+                		names.push(data[i]['product_name']);
+                		var amount  =
+                	     {
+                	         value : data[i]['amount'],
+                	         name : data[i]['product_name']
+                	     };
+                		amounts.push(amount);
+                		
+                		var price ={
+                			value:data[i]['sell_price'],
+                			name : data[i]['product_name']
+                		};
+                		prices.push(price);
+					}
+                	
+                	showChart(names,amounts,prices);
                 };
                 
-                myChart.on(ecConfig.EVENT.CLICK, changeShow);
+                
 			/////////////////////////////////////////////////////////////////
     	});
     }

@@ -171,4 +171,27 @@ public class AdminService {
         List<StaffEntity> staffs = adminMapper.GetPerformanceByStaffId(id);
         return SaleUtil.GetGsonStr(staffs);
     }
+    
+    /**
+     * 
+    * <method description>
+    *   删除产品信息
+    * @param id
+     */
+    public void DeleteProduct(String id){
+        adminMapper.DeleteProduct(id);
+        session.commit();
+    }
+    
+    /**
+     * 
+    * <method description>
+    *@param id
+     */
+    public void DeleteStaff(String id){
+        int staffId = Integer.valueOf(id);
+        adminMapper.DeleteStaff(staffId);
+        session.commit();
+    }
+    
  }

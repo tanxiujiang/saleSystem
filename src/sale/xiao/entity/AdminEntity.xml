@@ -38,12 +38,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--	加载职工列表消息-->
 	<select id="GetStaffs" resultType="sale.xiao.entity.StaffEntity">
-		select id,name,sex,pwd,tel,introduction,store_id from staff
+		select id,name,sex,pwd,tel,introduction,store_id from staff where is_delete = 0
 	</select>
 	
 	<!--	加载产品列表-->
 	<select id="GetProducts" resultType="sale.xiao.entity.ProductEntity">
-		select id,product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url from product
+		select id,product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url from product where is_delete = 0
 	</select>
 	
 	 <resultMap type="sale.xiao.entity.StaffEntity" id="staff_product">
@@ -73,4 +73,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		product_staff.staffid INNER join product ON product_staff.productid =
 		product.id WHERE staff.id = #{staffId} GROUP BY product_staff.productid
     </select>
+    
+<!--    删除产品信息-->
+	<update id="DeleteProduct">
+		update product SET is_delete = 1 WHERE id = #{id};
+	</update>
+<!--删除职工信息-->
+    <update id="DeleteStaff">
+    	update staff SET is_delete = 1 WHERE id = #{id};
+    </update>
+    
 </mapper>

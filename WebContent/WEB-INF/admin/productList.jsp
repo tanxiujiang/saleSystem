@@ -10,8 +10,8 @@
 </head>
 <body>
 		<div style="height: 45px;">
-	         <form class="form-search" style="float: right;margin-right: 30px">
-	            <input type="text" class="span2 search-query" style="height: 30px;width: 200px;">
+	         <form class="form-search" style="float: right;margin-right: 30px" action="">
+	            <input type="text" class="span2 search-query" style="height: 30px;width: 200px;" query>
 	           <button type="submit" class="btn">查找</button>
 	         </form>
          </div>
@@ -37,8 +37,7 @@
 					  			<td>${product.sell_price}</td>
 					  			<td>${product.remain_amount}</td>
 					  			<td>
-					  				<a href="#">下架</a>
-					  				<a href="#">销量查询</a>
+					  				<a href="javascript:void(0)" class="shutDownProduct" value="${product.id}">下架</a>
 					  			</td>
 					  		</tr>
 				  	</c:forEach>

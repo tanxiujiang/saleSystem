@@ -78,8 +78,17 @@ public interface StaffMapper {
 	/**
 	 * 
 	* <method description>
-	* 
+	*  根据月份和人员id查询统计
 	* @return
 	 */
 	public List<Map<String,Object>> loadStatisticByStaffId(@Param("staff_id")int staff_id,@Param("queryDate")String queryDate );
+	
+	/**
+	 * 
+	* <method description>
+	* 根据月份加载产品统计
+	* @param queryDate
+	* @return
+	 */
+	public List<Map<String,Object>> LoadProductStatisticsByMonth(@Param("queryDate")String queryDate);
 }

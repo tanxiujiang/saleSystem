@@ -10,27 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2015-03-31 19:23:17
+Date: 2015-04-03 18:15:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for `admin`
--- ----------------------------
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(30) NOT NULL,
-  `pwd` varchar(30) NOT NULL,
-  `name` varchar(12) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of admin
--- ----------------------------
-INSERT INTO `admin` VALUES ('1', '1026741594@qq.com', '123', '肖苗');
-
 -- ----------------------------
 -- Table structure for `product`
 -- ----------------------------
@@ -51,14 +34,15 @@ CREATE TABLE `product` (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', 'U盘', '120', '150', '100', '80', '红色8G', null, '0');
+INSERT INTO `product` VALUES ('1', 'U盘', '120', '150', '100', '80', '红色8G', null, '1');
 INSERT INTO `product` VALUES ('2', 'Iphone', '4800', '5500', '1200', '100', '金色', null, '0');
 INSERT INTO `product` VALUES ('20150330091852027859', '裙子', '145', '178', '122', '102', '娅 2015春夏新款韩版女装连衣裙欧根纱修身公主裙雪纺无袖背心印花裙子0066 粉红色 L         ', null, '0');
 INSERT INTO `product` VALUES ('20150331065616065591', '诺基亚5230', '1150', '1350', '100', '100', '诺基亚全国质量第一，销量第一。', null, '0');
+INSERT INTO `product` VALUES ('20150403045200002175', '360随身wifi', '20', '25', '100', '100', '安逸		         ', null, '0');
 INSERT INTO `product` VALUES ('3', '纯棉超薄羽绒服', '120', '150', '100', '100', '跳楼价，赶紧抢购吧。', '', '0');
 INSERT INTO `product` VALUES ('4', '纯棉超薄羽绒服', '120', '150', '100', '100', '跳楼价，赶紧抢购吧。', '', '0');
 INSERT INTO `product` VALUES ('5', '小米(Note)', '1200', '1500', '100', '100', '价格实惠，便宜好用.			         ', null, '0');
-INSERT INTO `product` VALUES ('6', '华为', '850', '100', '1000', '1000', '					         	\r\n		大大大达大厦			         ', null, '0');
+INSERT INTO `product` VALUES ('6', '华为', '850', '100', '1000', '1000', '					         	\r\n		大大大达大厦			         ', null, '1');
 
 -- ----------------------------
 -- Table structure for `product_staff`
@@ -124,24 +108,6 @@ INSERT INTO `sale_order` VALUES ('17', '20150330091852027859', '10', '2', '178',
 INSERT INTO `sale_order` VALUES ('18', '20150330091852027859', '10', '2', '178', '2015-03-31 06:02:03');
 
 -- ----------------------------
--- Table structure for `sale_product`
--- ----------------------------
-DROP TABLE IF EXISTS `sale_product`;
-CREATE TABLE `sale_product` (
-  `id` int(11) NOT NULL,
-  `product_id` varchar(30) NOT NULL,
-  `staff_id` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
-  `sell_price` double NOT NULL,
-  `sell_date` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of sale_product
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `staff`
 -- ----------------------------
 DROP TABLE IF EXISTS `staff`;
@@ -157,7 +123,7 @@ CREATE TABLE `staff` (
   `is_delete` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0表示逻辑未删除，1表示逻辑删除',
   `role` int(11) NOT NULL DEFAULT '0' COMMENT '0表示职工，2表示管理员',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of staff
@@ -169,6 +135,7 @@ INSERT INTO `staff` VALUES ('9', '1026741594@qq.com', 'leina', 'on', '111111', '
 INSERT INTO `staff` VALUES ('10', '1026741595@qq.com', 'lisary', 'on', '111111', '13540660605', '大学本科，现在在成都安科思有限公司上班.		         ', '5', '0', '0');
 INSERT INTO `staff` VALUES ('11', null, 'fanny', 'on', '111111', '13540660605', '实习生.			         ', '2', '0', '0');
 INSERT INTO `staff` VALUES ('12', null, 'zhangbing', '男', '111111', '12123123132132', '二逼青年欢乐多', '1', '0', '0');
+INSERT INTO `staff` VALUES ('13', 'harrytan@qq.com', 'Aa', 'on', '111111', '1202323', '你好		         ', '2', '0', '2');
 
 -- ----------------------------
 -- Table structure for `store`
@@ -189,24 +156,6 @@ INSERT INTO `store` VALUES ('1', '国美', '成都市万年场99号', '品质第
 INSERT INTO `store` VALUES ('2', '京东', '成都高新区', '速度第一');
 INSERT INTO `store` VALUES ('5', '红旗超市1', '成都花牌坊街', '世界500强');
 INSERT INTO `store` VALUES ('6', '红旗超市2', '成都西门车站', '中国100强');
-
--- ----------------------------
--- Table structure for `store_product`
--- ----------------------------
-DROP TABLE IF EXISTS `store_product`;
-CREATE TABLE `store_product` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `storeId` int(11) NOT NULL,
-  `productId` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of store_product
--- ----------------------------
-INSERT INTO `store_product` VALUES ('1', '1', '1');
-INSERT INTO `store_product` VALUES ('2', '1', '1');
-INSERT INTO `store_product` VALUES ('3', '1', '2');
 
 -- ----------------------------
 -- Table structure for `store_staff`

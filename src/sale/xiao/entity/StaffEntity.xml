@@ -75,14 +75,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <select id="loadStatisticByStaffId" resultMap="statistic-map">
-    	SELECT product_id,staff_id,SUM(amount) as amount,sale_order.sell_price,product.product_name FROM sale_order INNER JOIN product ON sale_order.product_id = product.id 
+    	SELECT SUM(sale_order.amount) as amount,amount*SUM(sale_order.sell_price)as sell_price,product.product_name,sale_order.product_id,sale_order.staff_id from sale_order INNER JOIN product ON product.id = sale_order.product_id   
     	<where>
-    		staff_id = #{staff_id}
+    		sale_order.staff_id = #{staff_id}
     	</where>
     	<if test="queryDate != null">
-    		and LEFT(sell_date,10) = #{queryDate}
+    		and LEFT(sell_date,7) = #{queryDate}
     	</if>
     	GROUP BY product_id
+    </select>
+    
+     <select id="LoadProductStatisticsByMonth" resultMap="statistic-map">
+    	SELECT product_id,staff_id,sell_date,SUM(amount) as amount,sale_order.sell_price*amount AS sell_price,product.product_name 
+    	from sale_order  INNER JOIN product ON  sale_order.product_id = product.id
+    	WHERE LEFT(sell_date,7)=#{queryDate} GROUP BY product_id;
     </select>
     
     <resultMap type="java.util.HashMap" id="statistic-map" autoMapping="true">

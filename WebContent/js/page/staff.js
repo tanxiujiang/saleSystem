@@ -106,57 +106,31 @@ require(
 			
 			//  解析返回json数据
 			var renderReports = function(data,currentElement){
-				var names = new Array(); 
-				var datas = new Array();
+				var names = []; 
+				var amounts = [];
+				var prices = [];
 				for(var i=0;i<data.length;i++){
 					names.push(data[i]['product_name']);
-					datas.push(data[i]['amount']);
+					amounts.push(data[i]['amount']);
+					prices.push(data[i]['sell_price']);
 				}
 			
-				var title = ['员工销量统计'];
 				var containerElement = document.getElementById('main');
 				
 				//渲染
-				showImageByBar(containerElement,title,names,datas);
+				showImageByBar(containerElement,names,amounts,prices);
 			};
 			
 			
 			// 图标展示销售信息
-			var showImageByBar = function(containerElement,title,names,datas){
+			var showImageByBar = function(containerElement,names,amounts,prices){
 				 var myChart = ec.init(containerElement);
 				 var option = {
-		                    tooltip: {
-		                        show: true
-		                    },
-		                    legend: {
-		                    	data:['销量']
-		                    },
-		                    xAxis : [
-		                        {
-		                            type : 'category',
-		                            data : names
-		                        }
-		                    ],
-		                    yAxis : [
-		                        {
-		                            type : 'value'
-		                        }
-		                    ],
-		                    series : [
-		                        {
-		                            "name":"销量",
-		                            "type":"bar",
-		                            "data":datas
-		                        }
-		                    ]
-		                };
-				 
-				 var option2 = {
 				            tooltip : {
 				                trigger: 'axis'
 				            },
 				            legend: {
-				                data:['蒸发量','降水量']
+				                data:['销售量','销售金额']
 				            },
 				            toolbox: {
 				                show : true,
@@ -172,7 +146,7 @@ require(
 				            xAxis : [
 				                {
 				                    type : 'category',
-				                    data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+				                    data : names
 				                }
 				            ],
 				            yAxis : [
@@ -183,21 +157,21 @@ require(
 				            ],
 				            series : [
 				                {
-				                    name:'蒸发量',
+				                    name:'销量',
 				                    type:'bar',
-				                    data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+				                    data:amounts
 				                },
 				                {
-				                    name:'降水量',
+				                    name:'总价',
 				                    type:'bar',
-				                    data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+				                    data:prices
 				                }
 				            ]
 				        };
 				        
 				 
 				// 为echarts对象加载数据 
-	            myChart.setOption(option2); 
+	            myChart.setOption(option); 
 			};
 			
 			/////////////////////////////////////////////////////////////////

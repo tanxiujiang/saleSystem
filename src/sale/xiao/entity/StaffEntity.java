@@ -25,6 +25,12 @@ public class StaffEntity {
 
     private String introduction;
 
+    private int    store_id;
+
+    private int    is_delete;
+
+    private int    role;
+
 
 
     public String getEmail() {
@@ -60,11 +66,6 @@ public class StaffEntity {
     public void setRole(int pRole) {
         role = pRole;
     }
-
-    private int store_id;
-
-    private int is_delete;
-    private int role;
 
 
 
