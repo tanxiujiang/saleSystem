@@ -31,7 +31,7 @@ public class StaffEntity {
 
     private int    role;
 
-
+    private String store_name;
 
     public String getEmail() {
         return email;
@@ -39,7 +39,19 @@ public class StaffEntity {
 
 
 
-    public void setEmail(String pEmail) {
+    public String getStore_name() {
+		return store_name;
+	}
+
+
+
+	public void setStore_name(String store_name) {
+		this.store_name = store_name;
+	}
+
+
+
+	public void setEmail(String pEmail) {
         email = pEmail;
     }
 

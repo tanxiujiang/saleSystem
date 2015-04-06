@@ -9,8 +9,8 @@
 </head>
 <body>
 	<div style="height: 45px;">
-        <form class="form-search" style="float: right;margin-right: 30px">
-           <input type="text" class="span2 search-query" style="height: 30px;width: 200px;">
+        <form class="form-search" style="float: right;margin-right: 30px" action="stafflist" method="post">
+           <input type="text" class="span2 search-query" style="height: 30px;width: 200px;" name="email" value="${pEmail}">
           <button type="submit" class="btn">查找</button>
         </form>
     </div>
@@ -23,6 +23,7 @@
 				  	<tr>
 				  		<th>序号</th>
 				  		<th>姓名</th>
+				  		<th>邮箱</th>
 				  		<th>性别</th>
 				  		<th>电话</th>
 				  		<th>商店</th>
@@ -32,9 +33,10 @@
 				  		<tr class="${status.count%2 == 0 ? 'warning' : ''}">
 				  			<td>${status.count }</td>
 				  			<td>${staff.name}</td>
+				  			<td>${staff.email}</td>
 				  			<td>${staff.sex}</td>
 				  			<td>${staff.tel}</td>
-				  			<td>国美电器</td>
+				  			<td>${staff.store_name}</td>
 				  			<td>
 				  				<a href="javascript:void(0)" class="shutDownStaff" value="${staff.id}">解雇</a>
 				  			</td>

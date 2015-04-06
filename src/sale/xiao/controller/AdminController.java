@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -154,9 +155,17 @@ public class AdminController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/stafflist", method = RequestMethod.GET)
-    public String StaffList(HttpServletRequest request) {
-        List<StaffEntity> staffs = adminService.GetStaffs();
+    @RequestMapping(value = "/stafflist", method = {RequestMethod.GET,RequestMethod.POST})
+    public String StaffList(HttpServletRequest request,String email) {
+        List<StaffEntity> staffs = null;
+	   if(StringUtils.isEmpty(email)){
+		   staffs = adminService.GetStaffs();
+        }
+	   else
+	   {
+		   staffs = adminService.QueryStaffsByLike(email); 
+		   request.setAttribute("pEmail", email);
+	   }	
         request.setAttribute("staffs", staffs);
         return "admin/staffList";
     }
@@ -170,9 +179,18 @@ public class AdminController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/productlist", method = RequestMethod.GET)
-    public String ProductList(HttpServletRequest request) {
-        List<ProductEntity> products = adminService.GetProducts();
+    @RequestMapping(value = "/productlist", method = {RequestMethod.GET,RequestMethod.POST})
+    public String ProductList(HttpServletRequest request,String name) {
+        List<ProductEntity> products = null;
+        if(StringUtils.isEmpty(name)){
+        	products = adminService.GetProducts();
+        }
+        else
+        {
+        	products = adminService.QueryProductsByLike(name);
+        	request.setAttribute("pName", name);
+        }
+        
         request.setAttribute("products", products);
         return "admin/productList";
     }
@@ -242,5 +260,4 @@ public class AdminController {
             out.print("error");
         }
     }
-
 }

@@ -13,7 +13,7 @@
 				<form action="queryproduct" method="post">
 					  <div class="col-lg-4">
 					    <div class="input-group">
-						      <input type="text" class="form-control" placeholder="Search for..." name="id">
+						      <input type="text" class="form-control" placeholder="Search for..." name="id" value="${id}">
 						      <span class="input-group-btn">
 						        <button class="btn btn-default" type="submit">Go!</button>
 						      </span>

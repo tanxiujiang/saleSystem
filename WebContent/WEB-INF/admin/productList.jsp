@@ -10,8 +10,8 @@
 </head>
 <body>
 		<div style="height: 45px;">
-	         <form class="form-search" style="float: right;margin-right: 30px" action="">
-	            <input type="text" class="span2 search-query" style="height: 30px;width: 200px;" query>
+	         <form class="form-search" style="float: right;margin-right: 30px" action="productlist" method="post">
+	            <input type="text" class="span2 search-query" style="height: 30px;width: 200px;" name="name" value="${pName}">
 	           <button type="submit" class="btn">查找</button>
 	         </form>
          </div>

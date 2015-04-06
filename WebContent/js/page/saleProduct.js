@@ -18,6 +18,20 @@ require(['config'],function() {
 			// 点击卖出产品
 			$(".buyProduct").click(function(){
 				var data = $("form.hiden").serialize();
+				var $this = $(this);
+				var numberTxt = $this.closest("tr").find("td:eq(1)");
+				var remainAmount = parseInt(numberTxt.text());
+				var qty = parseInt($(".qty").val());
+				
+				if(qty > remainAmount){
+					alert("购买数量必须小于等于"+remainAmount);
+				}
+				
+				if(qty <= 0){
+					alert("购买数量必须大于0");
+				}
+				var remainNumber = remainAmount - qty;
+				
 				$.ajax({
 					url : "buyproduct",
 					dataType : 'text',
@@ -29,6 +43,8 @@ require(['config'],function() {
 						}
 						else
 						{
+							// 更新文本数据
+							numberTxt.text(remainNumber);
 							alert(data);
 						}
 					}

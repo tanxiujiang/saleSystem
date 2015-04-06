@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--	加载职工列表消息-->
 	<select id="GetStaffs" resultType="sale.xiao.entity.StaffEntity">
-		select id,name,sex,pwd,tel,introduction,store_id from staff where is_delete = 0
+		select staff.id,name,email,sex,pwd,tel,introduction,store_name from staff INNER JOIN store ON  staff.store_id = store.id where is_delete = 0
 	</select>
 	
 	<!--	加载产品列表-->
@@ -83,4 +83,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	update staff SET is_delete = 1 WHERE id = #{id};
     </update>
     
+    <!--     实现产品信息的模糊查询 -->
+    <select id="QueryProductsByLike" parameterType="string" resultType="sale.xiao.entity.ProductEntity">
+    	select id,product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url from product where is_delete = 0 and product_name like '%${name}%'
+    </select>
+    
+	<!--     实现职工列表模糊查询 -->
+    <select id="QueryStaffsByLike" resultType="sale.xiao.entity.StaffEntity">
+		   select staff.id,name,email,sex,pwd,tel,introduction,store_name from staff INNER JOIN store ON  staff.store_id = store.id where is_delete = 0 and email like '%${email}%'
+    </select>
 </mapper>

@@ -9,8 +9,13 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import sale.xiao.entity.Pagination;
 
+/**
+ * @description 标签
+ * @author Administrator
+ *
+ */
 public class PaginationTag extends SimpleTagSupport {
-    // page data
+    
     private Pagination<?> pagination;
 
     private String        queryForm = "queryForm";
@@ -49,6 +54,7 @@ public class PaginationTag extends SimpleTagSupport {
             }
 
         }
+        
         // 下一页
         if (pagination.getPageNo() == pagination.getTotalPage()) {
             strBuf.append(" <span class=\"disabled\">").append(" >> </span> ");

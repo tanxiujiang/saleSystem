@@ -38,7 +38,7 @@ public class SaleUtil {
 	    
 	    // fasle 表示检测当前时候有session存在，如果不存在则创建一个，如果存在就返回当前的。
 	    // true 不管当前是否存在Session都创建一个
-	    HttpSession session = request.getSession(false);
+	    HttpSession session = request.getSession();
 	    
 	    return session;
 	}

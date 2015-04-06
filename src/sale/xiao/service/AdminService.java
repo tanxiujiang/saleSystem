@@ -184,7 +184,7 @@ public class AdminService {
     }
     
     /**
-     * 
+     * 删除职工信息
     * <method description>
     *@param id
      */
@@ -194,4 +194,20 @@ public class AdminService {
         session.commit();
     }
     
+    /**
+     * 模糊查询产品信息
+     * @return
+     */
+    public List<ProductEntity> QueryProductsByLike(String name){
+    	return adminMapper.QueryProductsByLike(name);
+    }
+    
+    /**
+     * 职工模糊搜索查询
+     * @param email
+     * @return
+     */
+    public List<StaffEntity> QueryStaffsByLike(String email){
+    	return adminMapper.QueryStaffsByLike(email);
+    }
  }

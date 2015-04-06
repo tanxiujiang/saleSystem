@@ -17,7 +17,7 @@ import sale.xiao.entity.StaffEntity;
 import sale.xiao.entity.StoreEntity;
 import sale.xiao.factory.SessionFactory;
 import sale.xiao.mapper.StaffMapper;
-
+import java.util.HashMap;
 /**
  * @descripton 用户信息逻辑处理
  * @author Administrator

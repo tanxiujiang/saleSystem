@@ -14,8 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.google.gson.Gson;
-
 import sale.xiao.entity.OrderEntity;
 import sale.xiao.entity.ProductEntity;
 import sale.xiao.entity.StaffEntity;
@@ -102,6 +100,7 @@ public class StaffController {
     public String QueryProductById(HttpServletRequest request, String id) {
         ProductEntity product = staffService.QueryProductById(id);
         if (null != product) {
+        	request.setAttribute("id", id);
             request.setAttribute("product", product);
         }
 
@@ -251,7 +250,9 @@ public class StaffController {
         try {
             PrintWriter out = response.getWriter();
             out.print(mapJson);
-        } catch (IOException e) {
+        } 
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
     }

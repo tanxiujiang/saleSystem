@@ -119,5 +119,19 @@ public interface AdminMapper {
     * @return
      */
     public int DeleteStaff(@Param("id") int id);
+    
+    /**
+     * 查询产品信息通过产品名称(模糊查询)
+     * @param name
+     * @return
+     */
+    public List<ProductEntity>  QueryProductsByLike(@Param("name") String name);
+    
+    /**
+     *  查询职工信息通过email(模糊查询)
+     * @param email
+     * @return
+     */
+    public List<StaffEntity> QueryStaffsByLike(@Param("email") String email);
 
 }
