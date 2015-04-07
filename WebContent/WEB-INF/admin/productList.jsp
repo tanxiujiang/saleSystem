@@ -25,6 +25,7 @@
 				  <table class="table table-hover">
 				  	<tr>
 				  		<th>序号</th>
+				  		<th>条形码</th>
 				  		<th>产品名称</th>
 				  		<th>进价</th>
 				  		<th>售价</th>
@@ -34,6 +35,7 @@
 				  	<c:forEach items="${products.records}" var="product" varStatus="status"> 
 					  		<tr class="${status.count%2 == 0 ? 'warning' : ''}">
 					  			<td>${(products.pageNo-1)*products.pageSize+status.count }</td>
+					  			<td>${product.id}</td>
 					  			<td>${product.product_name}</td>
 					  			<td>${product.factory_price}</td>
 					  			<td>${product.sell_price}</td>
