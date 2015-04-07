@@ -6,11 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Staffs</title>
 <script type="text/javascript" src="${basePath}/js/lib/require-2.1.14.js" language="javascript" charset="utf-8" data-main="${basePath}/js/page/home"></script>
+<P:css enable="true"/>
 </head>
 <body>
 	<div style="height: 45px;">
-        <form class="form-search" style="float: right;margin-right: 30px" action="stafflist" method="post">
+        <form class="form-search" style="float: right;margin-right: 30px" action="stafflist" method="post" name="staffFrm">
            <input type="text" class="span2 search-query" style="height: 30px;width: 200px;" name="email" value="${pEmail}">
+            <input type="hidden" name="pageNo" value="1">
           <button type="submit" class="btn">查找</button>
         </form>
     </div>
@@ -29,9 +31,9 @@
 				  		<th>商店</th>
 				  		<th>操作</th>
 				  	</tr>
-				  	<c:forEach items="${staffs}" var="staff" varStatus="status"> 
+				  	<c:forEach items="${staffs.records}" var="staff" varStatus="status"> 
 				  		<tr class="${status.count%2 == 0 ? 'warning' : ''}">
-				  			<td>${status.count }</td>
+				  			<td>${(staffs.pageNo-1)*staffs.pageSize+status.count }</td>
 				  			<td>${staff.name}</td>
 				  			<td>${staff.email}</td>
 				  			<td>${staff.sex}</td>
@@ -44,25 +46,27 @@
 				  	</c:forEach>
 				  </table>
 				  
-				  <nav>
-					  <ul class="pagination">
-					    <li>
-					      <a href="#" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-					    <li><a href="#">1</a></li>
-					    <li><a href="#">2</a></li>
-					    <li><a href="#">3</a></li>
-					    <li><a href="#">4</a></li>
-					    <li><a href="#">5</a></li>
-					    <li>
-					      <a href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
-					  </ul>
-				</nav>
+<!--				  <nav>-->
+<!--					  <ul class="pagination">-->
+<!--					    <li>-->
+<!--					      <a href="#" aria-label="Previous">-->
+<!--					        <span aria-hidden="true">&laquo;</span>-->
+<!--					      </a>-->
+<!--					    </li>-->
+<!--					    <li><a href="#">1</a></li>-->
+<!--					    <li><a href="#">2</a></li>-->
+<!--					    <li><a href="#">3</a></li>-->
+<!--					    <li><a href="#">4</a></li>-->
+<!--					    <li><a href="#">5</a></li>-->
+<!--					    <li>-->
+<!--					      <a href="#" aria-label="Next">-->
+<!--					        <span aria-hidden="true">&raquo;</span>-->
+<!--					      </a>-->
+<!--					    </li>-->
+<!--					  </ul>-->
+<!--				</nav>-->
+		<!--		分页插件-->
+		<P:Pagination pagination="${staffs}" queryForm="staffFrm" divId="pageStaff"/>
 		</div>
 		
 		<div id="main" style="height:400px;width: 600px"></div>

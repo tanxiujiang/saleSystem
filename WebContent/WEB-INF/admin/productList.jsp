@@ -7,11 +7,13 @@
 <title>products</title>
 <script type="text/javascript" src="${basePath}/js/lib/require-2.1.14.js" language="javascript" charset="utf-8" data-main="${basePath}/js/page/home"></script>
 <link href="${basePath }/css/bootstrap/bootstrap-combined.min.css" type="text/css" rel="stylesheet"/>
+<P:css enable="true"/>
 </head>
 <body>
 		<div style="height: 45px;">
-	         <form class="form-search" style="float: right;margin-right: 30px" action="productlist" method="post">
+	         <form class="form-search" style="float: right;margin-right: 30px" action="productlist" method="post" name="productFrm">
 	            <input type="text" class="span2 search-query" style="height: 30px;width: 200px;" name="name" value="${pName}">
+	            <input type="hidden" name="pageNo" value="1">
 	           <button type="submit" class="btn">查找</button>
 	         </form>
          </div>
@@ -29,9 +31,9 @@
 				  		<th>库存</th>
 				  		<th>操作</th>
 				  	</tr>
-				  	<c:forEach items="${products}" var="product" varStatus="status"> 
+				  	<c:forEach items="${products.records}" var="product" varStatus="status"> 
 					  		<tr class="${status.count%2 == 0 ? 'warning' : ''}">
-					  			<td>${status.count }</td>
+					  			<td>${(products.pageNo-1)*products.pageSize+status.count }</td>
 					  			<td>${product.product_name}</td>
 					  			<td>${product.factory_price}</td>
 					  			<td>${product.sell_price}</td>
@@ -42,26 +44,29 @@
 					  		</tr>
 				  	</c:forEach>
 				  </table>
-				  
-				  <nav>
-					  <ul class="pagination">
-					    <li>
-					      <a href="#" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-					    <li><a href="#">1</a></li>
-					    <li><a href="#">2</a></li>
-					    <li><a href="#">3</a></li>
-					    <li><a href="#">4</a></li>
-					    <li><a href="#">5</a></li>
-					    <li>
-					      <a href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
-					  </ul>
-				</nav>
+				  <P:Pagination pagination="${products}" queryForm="productFrm" divId="page"/>
+<!--				  <nav>-->
+<!--					  <ul class="pagination">-->
+<!--					    <li>-->
+<!--					      <a href="#" aria-label="Previous">-->
+<!--					        <span aria-hidden="true">&laquo;</span>-->
+<!--					      </a>-->
+<!--					    </li>-->
+<!--					    <li><a href="#">1</a></li>-->
+<!--					    <li><a href="#">2</a></li>-->
+<!--					    <li><a href="#">3</a></li>-->
+<!--					    <li><a href="#">4</a></li>-->
+<!--					    <li><a href="#">5</a></li>-->
+<!--					    <li>-->
+<!--					      <a href="#" aria-label="Next">-->
+<!--					        <span aria-hidden="true">&raquo;</span>-->
+<!--					      </a>-->
+<!--					    </li>-->
+<!--					  </ul>-->
+<!--				</nav>-->
+
+
+		
 		</div>
 </body>
 </html>

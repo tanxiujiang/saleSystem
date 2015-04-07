@@ -5,9 +5,9 @@
   
     <description>自定义标签类</description>  
     <tlib-version>1.0</tlib-version>  
-    <short-name>page</short-name>  
-    <uri>http://tanxiujiang.github.io/</uri>
-    
+    <short-name>myPageTaglib</short-name>  
+    <uri>https://github.com/tanxiujiang/saleSystem</uri>  
+  
     <tag>  
         <description>分页标签</description>  
         <name>Pagination</name>  
@@ -16,7 +16,7 @@
   
         <attribute>  
             <description>  
-                show data by page
+                Collection of items to iterate over.  
             </description>  
             <name>pagination</name>  
             <required>true</required>  
@@ -36,5 +36,17 @@
             <name>divClass</name>  
             <required>false</required>  
         </attribute>
-    </tag>  
+    </tag>
+    <tag>
+    	<description>分页样式信息</description>
+    	<name>css</name>
+    	<tag-class>sale.xiao.tag.CssTag</tag-class>
+    	<body-content>empty</body-content>
+    	<attribute>
+    		<name>enable</name>
+    		<required>false</required>
+    		<rtexprvalue>true</rtexprvalue>
+    		<type>boolean</type>
+    	</attribute>
+    </tag>
 </taglib>  

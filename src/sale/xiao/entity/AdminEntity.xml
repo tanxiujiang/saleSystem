@@ -38,13 +38,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--	加载职工列表消息-->
 	<select id="GetStaffs" resultType="sale.xiao.entity.StaffEntity">
-		select staff.id,name,email,sex,pwd,tel,introduction,store_name from staff INNER JOIN store ON  staff.store_id = store.id where is_delete = 0
+		select staff.id,name,email,sex,pwd,tel,introduction,store_name from staff INNER JOIN store ON  staff.store_id = store.id where is_delete = 0 limit ${exceptSize},${pageSize}
+	</select>
+	
+	<!--	加载产品记录行数-->
+	<select id="GetStaffCount" resultType="int">
+		select count(1) from staff INNER JOIN store ON  staff.store_id = store.id where is_delete = 0
+		<if test="email != null">
+			and email like '%${email}%'
+		</if>
 	</select>
 	
 	<!--	加载产品列表-->
 	<select id="GetProducts" resultType="sale.xiao.entity.ProductEntity">
-		select id,product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url from product where is_delete = 0
+		select id,product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url from product where is_delete = 0 limit ${exceptSize},${pageSize}
 	</select>
+	
+	<!--	加载产品记录行数-->
+	<select id="GetProductsCount" resultType="int">
+		select count(1) from product where is_delete = 0
+		<if test="name != null">
+			and product_name like '%${name}%'
+		</if>
+	</select>
+	
 	
 	 <resultMap type="sale.xiao.entity.StaffEntity" id="staff_product">
 	    	<id property="id" column="id"/>
@@ -85,11 +102,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!--     实现产品信息的模糊查询 -->
     <select id="QueryProductsByLike" parameterType="string" resultType="sale.xiao.entity.ProductEntity">
-    	select id,product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url from product where is_delete = 0 and product_name like '%${name}%'
+    	select id,product_name,factory_price,sell_price,total_amount,remain_amount,introduction,image_url from product where is_delete = 0 and product_name like '%${name}%' limit ${exceptSize},${pageSize}
     </select>
     
 	<!--     实现职工列表模糊查询 -->
     <select id="QueryStaffsByLike" resultType="sale.xiao.entity.StaffEntity">
-		   select staff.id,name,email,sex,pwd,tel,introduction,store_name from staff INNER JOIN store ON  staff.store_id = store.id where is_delete = 0 and email like '%${email}%'
+		   select staff.id,name,email,sex,pwd,tel,introduction,store_name from staff INNER JOIN store ON  staff.store_id = store.id where is_delete = 0 and email like '%${email}%' limit ${exceptSize},${pageSize}
     </select>
 </mapper>

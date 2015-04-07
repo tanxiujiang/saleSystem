@@ -2,8 +2,10 @@ package sale.xiao.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.util.StringUtils;
 
 import sale.xiao.entity.AdminEntity;
 import sale.xiao.entity.ProductEntity;
@@ -143,8 +145,8 @@ public class AdminService {
     * 加载职工列表
     * @return
      */
-    public List<StaffEntity> GetStaffs(){
-        List<StaffEntity> stores = adminMapper.GetStaffs();
+    public List<StaffEntity> GetStaffs(int pageNo,int pageSize){
+        List<StaffEntity> stores = adminMapper.GetStaffs((pageNo-1)*pageSize,pageSize);
         return stores;
     }
     
@@ -154,8 +156,8 @@ public class AdminService {
     * 加载产品列表
     * @return
      */
-    public List<ProductEntity> GetProducts(){
-        List<ProductEntity> products = adminMapper.GetProducts();
+    public List<ProductEntity> GetProducts(int pageNo,int pageSize){
+        List<ProductEntity> products = adminMapper.GetProducts((pageNo-1)*pageSize,pageSize);
         return products;
     }
     
@@ -198,8 +200,8 @@ public class AdminService {
      * 模糊查询产品信息
      * @return
      */
-    public List<ProductEntity> QueryProductsByLike(String name){
-    	return adminMapper.QueryProductsByLike(name);
+    public List<ProductEntity> QueryProductsByLike(String name,int pageNo,int pageSize){
+    	return adminMapper.QueryProductsByLike(name,(pageNo-1)*pageSize,pageSize);
     }
     
     /**
@@ -207,7 +209,28 @@ public class AdminService {
      * @param email
      * @return
      */
-    public List<StaffEntity> QueryStaffsByLike(String email){
-    	return adminMapper.QueryStaffsByLike(email);
+    public List<StaffEntity> QueryStaffsByLike(String email,int pageNo,int pageSize){
+    	return adminMapper.QueryStaffsByLike(email,(pageNo-1)*pageSize,pageSize);
+    }
+    
+    /**
+     * 
+    * <method description>
+    *  获取产品记录总数
+    * @return
+     */
+    public int GetProductsCount(String name){
+        return adminMapper.GetProductsCount(name);
+    }
+  
+    /**
+     * 
+    * <method description>
+    * 获取职工记录条数
+    * @param email
+    * @return
+     */
+    public int GetStaffCount(String email){
+        return adminMapper.GetStaffCount(email); 
     }
  }

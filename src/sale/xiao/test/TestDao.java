@@ -57,14 +57,17 @@ public class TestDao {
 	public void Addproduct(){
 	    AdminService admin = new AdminService();
 	    ProductEntity p = new ProductEntity();
-	    p.setFactory_price(120);
-	    p.setSell_price(150);
-	    p.setTotal_amount(100);
-	    p.setRemain_amount(100);
-	    p.setIntroduction("跳楼价，赶紧抢购吧。");
-	    p.setProduct_name("纯棉超薄羽绒服");
-	    p.setImage_url("");
-	    admin.AddProducts(p);
+	    for(int i=0;i<50;i++){
+	        p.setId(SaleUtil.GetProductId());
+	        p.setFactory_price(10+i);
+	        p.setSell_price(11+i);
+	        p.setTotal_amount(10+i);
+	        p.setRemain_amount(10+i);
+	        p.setIntroduction("跳楼价，赶紧抢购吧。");
+	        p.setProduct_name("签字笔"+i);
+	        p.setImage_url("");
+	        admin.AddProducts(p);
+	    }
 	}
 	
 	@Test
@@ -73,6 +76,27 @@ public class TestDao {
         StaffMapper mapper = session.getMapper(StaffMapper.class);
         List<Map<String,Object>> map = mapper.loadStatisticByStaffId(10,null);
         System.out.println(SaleUtil.GetGsonStr(map));
+	}
+	
+	/**
+	 * 添加员工资料
+	* <method description>
+	*
+	 */
+	@Test
+	public void AddStaff(){
+	    AdminService admin = new AdminService();
+	    StaffEntity s = new StaffEntity();
+	    for(int i=0;i<50;i++){
+	        s.setEmail("1026"+i+"@qq.com");
+	        s.setIntroduction("爽歪歪");
+	        s.setName("小苗"+i);
+	        s.setRole(0);
+	        s.setSex("女");
+	        s.setStore_id(2);
+	        s.setTel("182028887"+i);
+	        admin.AddStaff(s);
+	    }
 	}
 	
 }

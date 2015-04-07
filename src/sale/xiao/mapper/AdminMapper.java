@@ -78,7 +78,7 @@ public interface AdminMapper {
      * 
      * @return
      */
-    public List<StaffEntity> GetStaffs();
+    public List<StaffEntity> GetStaffs(@Param("exceptSize")int exceptSize,@Param("pageSize")int pageSize);
 
 
 
@@ -88,7 +88,7 @@ public interface AdminMapper {
      * 
      * @return
      */
-    public List<ProductEntity> GetProducts();
+    public List<ProductEntity> GetProducts(@Param("exceptSize")int exceptSize,@Param("pageSize")int pageSize);
 
 
 
@@ -125,13 +125,28 @@ public interface AdminMapper {
      * @param name
      * @return
      */
-    public List<ProductEntity>  QueryProductsByLike(@Param("name") String name);
+    public List<ProductEntity>  QueryProductsByLike(@Param("name") String name,@Param("exceptSize")int exceptSize,@Param("pageSize")int pageSize);
     
     /**
      *  查询职工信息通过email(模糊查询)
      * @param email
      * @return
      */
-    public List<StaffEntity> QueryStaffsByLike(@Param("email") String email);
+    public List<StaffEntity> QueryStaffsByLike(@Param("email") String email,@Param("exceptSize")int exceptSize,@Param("pageSize")int pageSize);
 
+    /**
+     * 
+    * <method description>
+    * 获取产品记录条数
+    * @return
+     */
+    public int GetProductsCount(@Param("name")String name);
+    
+    /**
+     * 
+    * <method description>
+    * 获取职工的记录条数
+    * @return
+     */
+    public int GetStaffCount(@Param("email") String email);
 }

@@ -2,6 +2,13 @@ package sale.xiao.entity;
 
 import java.util.List;
 
+/**
+ * 
+* <class description>
+*	分页实体类	
+* @author: harrytan
+* @version: 1.0, Apr 7, 2015
+ */
 public class Pagination<T> {
     // 分页数据
     private List<T> records;
@@ -119,5 +126,15 @@ public class Pagination<T> {
 
     public int getTotalRecord() {
         return totalRecord;
+    }
+    
+    public int getPageSize() {
+        return pageSize;
+    }
+
+
+
+    public void setPageSize(int pPageSize) {
+        pageSize = pPageSize;
     }
 }
