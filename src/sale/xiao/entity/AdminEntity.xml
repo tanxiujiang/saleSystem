@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </sql>
     
     <select id="GetAdmin" resultType="sale.xiao.entity.StaffEntity" useCache="true">
-    	select <include refid="cols_admin"></include> from  staff where email = #{email} and is_delete = 0
+    	select <include refid="cols_admin"></include> from  staff where email = #{email} and is_delete = 0 limit 1
     </select>
     
     <!-- 插入一个商店 -->
