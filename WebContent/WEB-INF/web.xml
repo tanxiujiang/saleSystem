@@ -11,6 +11,11 @@
 <!--  		<param-name>contextConfigLocation</param-name>-->
 <!--  		<param-value>/WEB-INF/spring-servlet.xml</param-value>-->
 <!--  	</context-param>-->
+<!--   	配置spring的默认加载路径 -->
+<!--   	<context-param> -->
+<!--   		<param-name>contextConfigLocation</param-name> -->
+<!--   		<param-value>classpath:META-INF/applicationContext.xml</param-value> -->
+<!--   	</context-param> -->
   	
   	<servlet>
   		<servlet-name>spring</servlet-name>

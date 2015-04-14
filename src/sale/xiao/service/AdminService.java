@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import sale.xiao.entity.AdminEntity;
@@ -13,6 +14,7 @@ import sale.xiao.entity.StaffEntity;
 import sale.xiao.entity.StoreEntity;
 import sale.xiao.factory.SessionFactory;
 import sale.xiao.mapper.AdminMapper;
+import sale.xiao.serviceInter.AdminServiceInter;
 import sale.xiao.util.SaleUtil;
 
 /**
@@ -22,18 +24,28 @@ import sale.xiao.util.SaleUtil;
  * @author: harrytan
  * @version: 1.0, Mar 24, 2015
  */
-public class AdminService {
+// @Service 类似于在spring中去注册一个bean
+@Service
+public class AdminService implements AdminServiceInter{
 
-    SqlSessionFactory sqlSessionFactory = null;
-    SqlSession        session           = null;
+//    SqlSessionFactory sqlSessionFactory = null;
+//    SqlSession        session           = null;
     AdminMapper       adminMapper       = null;
 
 
 
-    public AdminService() {
-        sqlSessionFactory = SessionFactory.GetSqlSessionFactory();
-        session = sqlSessionFactory.openSession();
-        adminMapper = session.getMapper(AdminMapper.class);
+    public AdminMapper getAdminMapper() {
+		return adminMapper;
+	}
+
+	public void setAdminMapper(AdminMapper adminMapper) {
+		this.adminMapper = adminMapper;
+	}
+
+	public AdminService() {
+//        sqlSessionFactory = SessionFactory.GetSqlSessionFactory();
+//        session = sqlSessionFactory.openSession();
+//        adminMapper = session.getMapper(AdminMapper.class);
     }
 
     /**
@@ -66,10 +78,10 @@ public class AdminService {
         try {
             b = adminMapper.AddStaff(staff);
         } catch (Exception e) {
-            session.rollback();
+//            session.rollback();
             System.err.println("添加员工信息失败，执行回滚操作：" + e.getMessage());
         } finally {
-            session.commit();
+//            session.commit();
         }
         return b;
     }
@@ -88,11 +100,11 @@ public class AdminService {
         try {
             b = adminMapper.AddStore(store);
         } catch (Exception e) {
-            session.rollback();
+//            session.rollback();
             System.err.println("添加分店失败，执行回滚操作：");
             e.printStackTrace();
         } finally {
-            session.commit();
+//            session.commit();
         }
 
         return b;
@@ -112,11 +124,11 @@ public class AdminService {
         try {
             b = adminMapper.AddProducts(product);
         } catch (Exception e) {
-            session.rollback();
+//            session.rollback();
             System.err.print("添加商品入库失败,执行回滚操作");
             e.printStackTrace();
         } finally {
-            session.commit();
+//            session.commit();
         }
 
         return b;
@@ -182,7 +194,7 @@ public class AdminService {
      */
     public void DeleteProduct(String id){
         adminMapper.DeleteProduct(id);
-        session.commit();
+//        session.commit();
     }
     
     /**
@@ -193,7 +205,7 @@ public class AdminService {
     public void DeleteStaff(String id){
         int staffId = Integer.valueOf(id);
         adminMapper.DeleteStaff(staffId);
-        session.commit();
+//        session.commit();
     }
     
     /**
@@ -233,4 +245,5 @@ public class AdminService {
     public int GetStaffCount(String email){
         return adminMapper.GetStaffCount(email); 
     }
+    
  }

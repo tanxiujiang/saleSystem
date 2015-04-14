@@ -1,5 +1,6 @@
 package sale.xiao.test;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -97,6 +98,14 @@ public class TestDao {
 	        s.setTel("182028887"+i);
 	        admin.AddStaff(s);
 	    }
+	}
+	
+	@Test
+	public void Test(){
+		Map<String, String> m = new HashMap<String, String>();
+		m.put("name", "harry");
+		m.put("age", "100");
+		System.out.println(m.toString());
 	}
 	
 }
