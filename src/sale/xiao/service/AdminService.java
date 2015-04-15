@@ -2,6 +2,8 @@ package sale.xiao.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -25,7 +27,6 @@ import sale.xiao.util.SaleUtil;
  * @version: 1.0, Mar 24, 2015
  */
 // @Service 类似于在spring中去注册一个bean
-@Service
 public class AdminService implements AdminServiceInter{
 
 //    SqlSessionFactory sqlSessionFactory = null;
@@ -38,6 +39,7 @@ public class AdminService implements AdminServiceInter{
 		return adminMapper;
 	}
 
+    @Resource
 	public void setAdminMapper(AdminMapper adminMapper) {
 		this.adminMapper = adminMapper;
 	}

@@ -129,7 +129,6 @@ public class StaffService {
         // 事务工厂
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
         Transaction newTransaction = transactionFactory.newTransaction(session.getConnection());
-        
         boolean b = false;
         try {
             staffMapper.AddOrder(order);

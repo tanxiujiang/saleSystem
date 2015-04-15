@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ import sale.xiao.entity.Pagination;
 import sale.xiao.entity.ProductEntity;
 import sale.xiao.entity.StaffEntity;
 import sale.xiao.service.AdminService;
+import sale.xiao.serviceInter.AdminServiceInter;
 import sale.xiao.util.SaleUtil;
 
 /**
@@ -32,8 +34,21 @@ import sale.xiao.util.SaleUtil;
 @RequestMapping("/admin")
 public class AdminController {
 
-    AdminService adminService = null;
+    AdminServiceInter adminService = null;
     
+    public AdminServiceInter getAdminService() {
+        return adminService;
+    }
+
+
+
+    @Resource(name="adminService")
+    public void setAdminService(AdminServiceInter pAdminService) {
+        adminService = pAdminService;
+    }
+
+
+
     // 分页都是默认一页展示10条数据
     final static int pageSize = 8;
 
@@ -47,10 +62,10 @@ public class AdminController {
     /**
      * 初始化service类，加载数据信息
      */
-    @ModelAttribute
-    public void initService() {
-        adminService = new AdminService();
-    }
+//    @ModelAttribute
+//    public void initService() {
+//        adminService = new AdminService();
+//    }
 
 
 
